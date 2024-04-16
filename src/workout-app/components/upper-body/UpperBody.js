@@ -15,8 +15,8 @@ const UpperBody = () => {
   const [upperBody, setUpperBody] = useState("")
 
   const getWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/comments")
-    setWorkouts(data)
+    // const { data } = await axios.get("http://localhost:4000/comments")
+    // setWorkouts(data)
   }
   useEffect(() => {
     getWorkouts()
