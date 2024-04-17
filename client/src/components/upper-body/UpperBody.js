@@ -9,17 +9,11 @@ import bodyBuilder from "./videos/body-builder.mp4"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { FaArrowAltCircleLeft } from "react-icons/fa"
-import { WorkOutData } from "../../App"
 import "./UpperBody.css"
+import { WorkingOutContext } from "../../context/WorkoutContext"
 const UpperBody = () => {
-  const {
-    workoutList,
-    setWorkoutList,
-    upperBody,
-    setUpperBody,
-    setWorkoutComments,
-    workoutComments,
-  } = useContext(WorkOutData)
+  const { workoutList, setWorkoutList, upperBody, setUpperBody, setWorkoutComments, workoutComments } =
+    useContext(WorkingOutContext)
   const [commentsInput, setCommentsInput] = useState("")
   const getWorkouts = async () => {
     const { data } = await axios.get("http://localhost:4000/comments")
@@ -99,13 +93,15 @@ const UpperBody = () => {
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Share Your Tip With Us .."></textarea>
+                placeholder="Share Your Tip With Us .."
+              ></textarea>
               <button
                 onClick={() => {
                   setWorkoutComments((comments) => [...comments, commentsInput])
                   postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Comments
               </button>
               <button
@@ -113,7 +109,8 @@ const UpperBody = () => {
                   setWorkoutList((list) => [...list, upperBody])
                   postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Workout List
               </button>
             </div>

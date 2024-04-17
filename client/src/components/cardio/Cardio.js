@@ -8,10 +8,9 @@ import "./Cardio.css"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { FaArrowAltCircleLeft } from "react-icons/fa"
-import { WorkOutData } from "../../App"
+import WorkingOutContext from "../../context/WorkoutContext"
 const Cardio = () => {
-  const { workoutList, setWorkoutList, cardio, setCardio, setWorkoutComments } =
-    useContext(WorkOutData)
+  const { workoutList, setWorkoutList, cardio, setCardio, setWorkoutComments } = useContext(WorkingOutContext)
 
   const [commentsInput, setCommentsInput] = useState("")
 
@@ -86,13 +85,15 @@ const Cardio = () => {
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Share Your Tip With Us .."></textarea>
+                placeholder="Share Your Tip With Us .."
+              ></textarea>
               <button
                 onClick={() => {
                   setWorkoutComments((comments) => [...comments, cardio])
                   getWorkouts()
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Comments
               </button>
               <button
@@ -100,7 +101,8 @@ const Cardio = () => {
                   setWorkoutList((list) => [...list, cardio])
                   getWorkouts()
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Workout List
               </button>
             </div>

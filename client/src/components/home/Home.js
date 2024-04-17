@@ -2,21 +2,12 @@ import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import bodyBuilder from "../upper-body/videos/body-builder.mp4"
 import "./Home.css"
-import Comments from "../../Comments"
 import axios from "axios"
-import { WorkOutData } from "../../App"
+import { WorkingOutContext } from "../../context/WorkoutContext"
 
 const Home = () => {
-  const {
-    workoutList,
-    setWorkoutList,
-    abs,
-    cardio,
-    legs,
-    upperBody,
-    workoutComments,
-    setWorkoutComments,
-  } = useContext(WorkOutData)
+  const { workoutList, setWorkoutList, abs, cardio, legs, upperBody, workoutComments, setWorkoutComments } =
+    useContext(WorkingOutContext)
   const getWorkouts = async () => {
     const { data } = await axios.get("http://localhost:4000/comments")
     setWorkoutList(data)
@@ -70,7 +61,6 @@ const Home = () => {
           </>
         ) : null}
       </div>
-      <Comments getWorkouts={getWorkouts} />
     </div>
   )
 }

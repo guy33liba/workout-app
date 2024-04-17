@@ -12,10 +12,10 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 import { FaArrowAltCircleLeft } from "react-icons/fa"
 import "./Legs.css"
-import { WorkOutData } from "../../App"
+import { WorkingOutContext } from "../../context/WorkoutContext"
 const Legs = () => {
   const { workoutList, setWorkoutList, legs, setLegs, setWorkoutComments, wokrcomments } =
-    useContext(WorkOutData)
+    useContext(WorkingOutContext)
 
   const [commentsInput, setCommentsInput] = useState("")
 

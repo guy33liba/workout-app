@@ -9,10 +9,10 @@ import bodyBuilder from "./videos/body-builder.mp4"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { FaArrowAltCircleLeft } from "react-icons/fa"
-import { WorkOutData } from "../../App"
+import { WorkingOutContext } from "../../context/WorkoutContext"
 const Abs = () => {
   const { workoutList, setWorkoutList, abs, setAbs, setWorkoutComments, workoutComments } =
-    useContext(WorkOutData)
+    useContext(WorkingOutContext)
 
   const [commentsInput, setCommentsInput] = useState("")
   const getWorkouts = async () => {
@@ -91,14 +91,16 @@ const Abs = () => {
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Share Your Tip With Us .."></textarea>
+                placeholder="Share Your Tip With Us .."
+              ></textarea>
               <button
                 onClick={() => {
                   setWorkoutComments((comments) => [...comments, commentsInput])
                   getWorkouts()
                   postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Comments
               </button>
               <button
@@ -106,7 +108,8 @@ const Abs = () => {
                   setWorkoutList((list) => [...list, abs])
                   getWorkouts()
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Workout List
               </button>
             </div>
