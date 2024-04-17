@@ -1,0 +1,31 @@
+.links {
+  font-size: 40px;
+  height: 100px;
+  width: 40%;
+  justify-content: space-around;
+  display: flex;
+  position: absolute;
+  left: 57%;
+  text-decoration: none;
+}
+
+.color {
+  transition: ease-in-out 0.5s;
+  color: rgb(255, 255, 255);
+}
+.color:hover {
+  color: rgb(255, 255, 255, 0.5);
+  transition: 0.5s;
+}
+.headline {
+  color: rgba(99, 123, 255, 0.8);
+  font-size: 100px;
+  transition: 0.5s;
+}
+.headline:hover {
+  color: white;
+
+  font-size: 100px;
+  transition: 0.8s;
+  user-select: none;
+}
