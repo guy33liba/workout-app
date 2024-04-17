@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import shoulders from "./videos/shoulders.mp4"
 import biceps from "./videos/biceps.mp4"
 import benchPress from "./videos/bench-press.mp4"
@@ -9,9 +9,11 @@ import bodyBuilder from "./videos/body-builder.mp4"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { FaArrowAltCircleLeft } from "react-icons/fa"
+import { WorkOutContextList, WorkOutContextComments } from "../../App"
 import "./UpperBody.css"
 const UpperBody = () => {
-  const [workouts, setWorkouts] = useState([])
+  const { workoutList, setWorkoutList } = useContext(WorkOutContextList)
+  const { workoutComments, setworkoutComments } = useContext(WorkOutContextComments)
   const [upperBody, setUpperBody] = useState("")
 
   const getWorkouts = async () => {
@@ -82,7 +84,13 @@ const UpperBody = () => {
           <div className="comments">
             <div className="header">tell me how to workout better </div>
             <div>
-              <textarea name="" id="" cols="30" rows="10" placeholder="Share Your Tip With Us .."></textarea>
+              <textarea
+                value={workoutComments}
+                id=""
+                cols="30"
+                rows="10"
+                placeholder="Share Your Tip With Us .."
+              ></textarea>
               <button onClick={getWorkouts} style={{ fontSize: "30px" }}>
                 Upload Comments
               </button>
