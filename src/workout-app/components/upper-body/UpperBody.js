@@ -13,7 +13,8 @@ import { WorkOutContextList, WorkOutContextComments } from "../../App"
 import "./UpperBody.css"
 const UpperBody = () => {
   const { workoutList, setWorkoutList } = useContext(WorkOutContextList)
-  const { workoutComments, setworkoutComments } = useContext(WorkOutContextComments)
+  const { workoutComments, setWorkoutComments } = useContext(WorkOutContextComments)
+  const [commentsInput, setCommentsInput] = useState("")
   const [upperBody, setUpperBody] = useState("")
 
   const getWorkouts = async () => {
@@ -45,38 +46,38 @@ const UpperBody = () => {
         </div>
         <div className="videos">
           {upperBody === "delts" && (
-            <video className="videos" autoPlay muted width="700" height="500" controls>
+            <video className="videos" autoPlay muted width="800" height="500" controls>
               <source src={delts} type="video/mp4" />
             </video>
           )}
           {upperBody === "biceps_dumbell" && (
-            <video className="videos" autoPlay muted width="700" height="500" controls>
+            <video className="videos" autoPlay muted width="800" height="500" controls>
               <source src={biceps} type="video/mp4" />
             </video>
           )}
           {upperBody === "triceps_dumbell" && (
-            <video className="videos" autoPlay muted width="700" height="500" controls>
+            <video className="videos" autoPlay muted width="800" height="500" controls>
               <source src={triceps} type="video/mp4" />
             </video>
           )}
           {upperBody === "traps_dumbells" && (
-            <video className="videos" autoPlay muted width="700" height="500" controls>
+            <video className="videos" autoPlay muted width="800" height="500" controls>
               <source src={traps} type="video/mp4" />
             </video>
           )}
           {upperBody === "benchPress" && (
-            <video className="videos" autoPlay muted width="700" height="500" controls>
+            <video className="videos" autoPlay muted width="800" height="500" controls>
               <source src={benchPress} type="video/mp4" />
             </video>
           )}
           {upperBody === "dumbells_shoulders" && (
-            <video className="videos" autoPlay muted width="700" height="500" controls>
+            <video className="videos" autoPlay muted width="800" height="500" controls>
               <source src={shoulders} type="video/mp4" />
             </video>
           )}
         </div>
       </div>
-      <div>
+      <div className="commnets-container">
         <div class="background-video">
           <video muted loop id="bgVideo">
             <source src={bodyBuilder} type="video/mp4" />
@@ -85,14 +86,30 @@ const UpperBody = () => {
             <div className="header">tell me how to workout better </div>
             <div>
               <textarea
-                value={workoutComments}
+                value={commentsInput}
+                onChange={(e) => setCommentsInput(e.target.value)}
                 id=""
                 cols="30"
                 rows="10"
                 placeholder="Share Your Tip With Us .."
               ></textarea>
-              <button onClick={getWorkouts} style={{ fontSize: "30px" }}>
+              <button
+                onClick={() => {
+                  setWorkoutComments((comments) => [...comments, commentsInput])
+                  getWorkouts()
+                }}
+                style={{ fontSize: "30px" }}
+              >
                 Upload Comments
+              </button>
+              <button
+                onClick={() => {
+                  setWorkoutList((list) => [...list, upperBody])
+                  getWorkouts()
+                }}
+                style={{ fontSize: "30px" }}
+              >
+                Upload Workout List
               </button>
             </div>
           </div>
