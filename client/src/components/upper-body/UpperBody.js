@@ -15,12 +15,9 @@ const UpperBody = () => {
   const { workoutList, setWorkoutList, upperBody, setUpperBody, setWorkoutComments, workoutComments } =
     useContext(WorkingOutContext)
   const [commentsInput, setCommentsInput] = useState("")
-  const getWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/comments")
-    setWorkoutList(data)
-  }
+
   const postWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/comments", {
+    const { data } = await axios.post("http://localhost:4000/workoutdata", {
       upperBody,
       commentsInput,
     })

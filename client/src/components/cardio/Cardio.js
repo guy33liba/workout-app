@@ -8,28 +8,19 @@ import "./Cardio.css"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { FaArrowAltCircleLeft } from "react-icons/fa"
-import WorkingOutContext from "../../context/WorkoutContext"
+import { WorkingOutContext } from "../../context/WorkoutContext"
 const Cardio = () => {
   const { workoutList, setWorkoutList, cardio, setCardio, setWorkoutComments } = useContext(WorkingOutContext)
 
   const [commentsInput, setCommentsInput] = useState("")
 
-  const getWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/comments")
-    setWorkoutList(data)
-    setWorkoutComments(data)
-    console.log(data)
-  }
   const postWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/comments", {
+    const { data } = await axios.post("http://localhost:4000/workoutdata", {
       cardio,
       commentsInput,
     })
     setWorkoutList(data)
   }
-  useEffect(() => {
-    getWorkouts()
-  }, [])
   return (
     <div>
       <Link to="/">
@@ -90,7 +81,6 @@ const Cardio = () => {
               <button
                 onClick={() => {
                   setWorkoutComments((comments) => [...comments, cardio])
-                  getWorkouts()
                 }}
                 style={{ fontSize: "30px" }}
               >
@@ -99,7 +89,7 @@ const Cardio = () => {
               <button
                 onClick={() => {
                   setWorkoutList((list) => [...list, cardio])
-                  getWorkouts()
+                  postWorkouts()
                 }}
                 style={{ fontSize: "30px" }}
               >

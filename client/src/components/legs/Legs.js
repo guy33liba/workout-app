@@ -14,26 +14,17 @@ import { FaArrowAltCircleLeft } from "react-icons/fa"
 import "./Legs.css"
 import { WorkingOutContext } from "../../context/WorkoutContext"
 const Legs = () => {
-  const { workoutList, setWorkoutList, legs, setLegs, setWorkoutComments, wokrcomments } =
-    useContext(WorkingOutContext)
+  const { workoutList, setWorkoutList, legs, setLegs, setWorkoutComments, wokrcomments } = useContext(WorkingOutContext)
 
   const [commentsInput, setCommentsInput] = useState("")
 
-  const getWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/comments")
-    setWorkoutList(data)
-    setWorkoutComments(data)
-  }
   const postWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/comments", {
+    const { data } = await axios.post("http://localhost:4000/workoutdata", {
       legs,
       commentsInput,
     })
     setWorkoutList(data)
   }
-  useEffect(() => {
-    getWorkouts()
-  }, [])
   return (
     <div>
       <Link to="/">
@@ -112,21 +103,23 @@ const Legs = () => {
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Share Your Tip With Us .."></textarea>
+                placeholder="Share Your Tip With Us .."
+              ></textarea>
               <button
                 onClick={() => {
                   setWorkoutComments((comments) => [...comments, commentsInput])
-                  getWorkouts()
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Comments
               </button>
               <button
                 onClick={() => {
                   setWorkoutList((list) => [...list, legs])
-                  getWorkouts()
+                  postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Workout List
               </button>
             </div>

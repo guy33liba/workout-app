@@ -9,7 +9,7 @@ const Home = () => {
   const { workoutList, setWorkoutList, abs, cardio, legs, upperBody, workoutComments, setWorkoutComments } =
     useContext(WorkingOutContext)
   const getWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/comments")
+    const { data } = await axios.get("http://localhost:4000/workoutdata")
     setWorkoutList(data)
     setWorkoutComments(data)
   }

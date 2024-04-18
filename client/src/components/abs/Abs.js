@@ -15,21 +15,15 @@ const Abs = () => {
     useContext(WorkingOutContext)
 
   const [commentsInput, setCommentsInput] = useState("")
-  const getWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/comments")
-    setWorkoutList(data)
-    setWorkoutComments(data)
-  }
+
   const postWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/comments", {
+    const { data } = await axios.post("http://localhost:4000/workoutdata", {
       abs: abs,
       comments: commentsInput,
     })
     setWorkoutList(data)
   }
-  useEffect(() => {
-    getWorkouts()
-  }, [])
+
   return (
     <div>
       <Link to="/">
@@ -96,7 +90,6 @@ const Abs = () => {
               <button
                 onClick={() => {
                   setWorkoutComments((comments) => [...comments, commentsInput])
-                  getWorkouts()
                   postWorkouts()
                 }}
                 style={{ fontSize: "30px" }}
@@ -106,7 +99,6 @@ const Abs = () => {
               <button
                 onClick={() => {
                   setWorkoutList((list) => [...list, abs])
-                  getWorkouts()
                 }}
                 style={{ fontSize: "30px" }}
               >
