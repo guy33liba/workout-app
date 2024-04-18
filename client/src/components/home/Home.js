@@ -16,6 +16,7 @@ const Home = () => {
   useEffect(() => {
     getWorkouts()
   }, [])
+  console.log(workoutList);
   return (
     <div className="background-video">
       <video autoplay muted loop id="bgVideo">

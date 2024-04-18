@@ -18,6 +18,7 @@ const Cardio = () => {
     const { data } = await axios.post("http://localhost:4000/workoutdata", {
       cardio,
       commentsInput,
+      workoutList,
     })
     setWorkoutList(data)
   }
