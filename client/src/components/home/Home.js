@@ -6,20 +6,29 @@ import axios from "axios"
 import { WorkingOutContext } from "../../context/WorkoutContext"
 
 const Home = () => {
-  const { workoutList, setWorkoutList, abs, cardio, legs, upperBody, workoutComments, setWorkoutComments } =
-    useContext(WorkingOutContext)
+  const {
+    workoutList,
+    setWorkoutList,
+    abs,
+    cardio,
+    legs,
+    upperBody,
+    workoutComments,
+    setWorkoutComments,
+  } = useContext(WorkingOutContext)
   const getWorkouts = async () => {
     const { data } = await axios.get("http://localhost:4000/workoutdata")
     setWorkoutList(data)
     setWorkoutComments(data)
+    console.log(data)
   }
   useEffect(() => {
     getWorkouts()
   }, [])
-  console.log(workoutList);
+  console.log(workoutList)
   return (
     <div className="background-video">
-      <video autoplay muted loop id="bgVideo">
+      <video muted loop id="bgVideo">
         <source src={bodyBuilder} type="video/mp4" />
       </video>
 
@@ -53,12 +62,31 @@ const Home = () => {
       <div>
         {abs || legs || cardio || upperBody ? (
           <>
-            {workoutList.map((item, index) => (
-              <div key={index}>{item.comments}</div>
-            ))}
-            {workoutComments.map((item, index) => (
-              <div key={index}>{item.abs}</div>
-            ))}
+            <div className="externalContainer">
+              <div className="workoutListItemsContainer">
+                {Array.isArray(workoutList) ? (
+                  workoutList.map((item, index) => (
+                    <div>
+                      <div className="workoutListItems" key={index}>
+                        {item.upperBody}
+                        {item.legs}
+                        {item.abs}
+                        {item.cardio}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div>{workoutList}</div>
+                )}
+              </div>
+              <div>
+                {Array.isArray(workoutComments) ? (
+                  workoutComments.map((item, index) => <div key={index}>{item.comments}</div>)
+                ) : (
+                  <div>{workoutList}</div>
+                )}
+              </div>
+            </div>
           </>
         ) : null}
       </div>

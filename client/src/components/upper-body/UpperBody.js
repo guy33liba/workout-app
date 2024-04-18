@@ -12,8 +12,14 @@ import { FaArrowAltCircleLeft } from "react-icons/fa"
 import "./UpperBody.css"
 import { WorkingOutContext } from "../../context/WorkoutContext"
 const UpperBody = () => {
-  const { workoutList, setWorkoutList, upperBody, setUpperBody, setWorkoutComments, workoutComments } =
-    useContext(WorkingOutContext)
+  const {
+    workoutList,
+    setWorkoutList,
+    upperBody,
+    setUpperBody,
+    setWorkoutComments,
+    workoutComments,
+  } = useContext(WorkingOutContext)
   const [commentsInput, setCommentsInput] = useState("")
 
   const postWorkouts = async () => {
@@ -35,16 +41,16 @@ const UpperBody = () => {
             <option value="" disabled>
               choose Workout...
             </option>
-            <option value="delts">Deltoids</option>
-            <option value="biceps_dumbell">Biceps</option>
-            <option value="triceps_dumbell">Triceps</option>
-            <option value="traps_dumbells">Traps</option>
+            <option value="Deltoids">Deltoids</option>
+            <option value="biceps_dumbell">biceps_dumbell</option>
+            <option value="triceps_dumbell">triceps_dumbell</option>
+            <option value="traps_dumbells">traps_dumbells</option>
             <option value="benchPress">Bench Press</option>
-            <option value="dumbells_shoulders">Shoulders</option>
+            <option value="dumbells_shoulders">dumbells_shoulders</option>
           </select>
         </div>
         <div className="videos">
-          {upperBody === "delts" && (
+          {upperBody === "Deltoids" && (
             <video className="videos" autoPlay muted width="800" height="500" controls>
               <source src={delts} type="video/mp4" />
             </video>
@@ -90,24 +96,25 @@ const UpperBody = () => {
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Share Your Tip With Us .."
-              ></textarea>
+                placeholder="Share Your Tip With Us .."></textarea>
               <button
                 onClick={() => {
-                  setWorkoutComments((comments) => [...comments, commentsInput])
                   postWorkouts()
+                  setWorkoutList((list) => {
+                    return { ...list, upperBody }
+                  })
                 }}
-                style={{ fontSize: "30px" }}
-              >
+                style={{ fontSize: "30px" }}>
                 Upload Comments
               </button>
               <button
                 onClick={() => {
-                  setWorkoutList((list) => [...list, upperBody])
+                  setWorkoutComments((list) => {
+                    return { ...list, workoutComments }
+                  })
                   postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}
-              >
+                style={{ fontSize: "30px" }}>
                 Upload Workout List
               </button>
             </div>

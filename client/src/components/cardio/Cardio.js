@@ -10,7 +10,8 @@ import { Link } from "react-router-dom"
 import { FaArrowAltCircleLeft } from "react-icons/fa"
 import { WorkingOutContext } from "../../context/WorkoutContext"
 const Cardio = () => {
-  const { workoutList, setWorkoutList, cardio, setCardio, setWorkoutComments } = useContext(WorkingOutContext)
+  const { workoutList, setWorkoutList, cardio, setCardio, setWorkoutComments, workoutComments } =
+    useContext(WorkingOutContext)
 
   const [commentsInput, setCommentsInput] = useState("")
 
@@ -18,7 +19,6 @@ const Cardio = () => {
     const { data } = await axios.post("http://localhost:4000/workoutdata", {
       cardio,
       commentsInput,
-      workoutList,
     })
     setWorkoutList(data)
   }
@@ -77,23 +77,25 @@ const Cardio = () => {
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Share Your Tip With Us .."
-              ></textarea>
+                placeholder="Share Your Tip With Us .."></textarea>
               <button
                 onClick={() => {
-                  setWorkoutComments((comments) => [...comments, cardio])
+                  postWorkouts()
+                  setWorkoutList((list) => {
+                    return { ...list, cardio: cardio }
+                  })
                 }}
-                style={{ fontSize: "30px" }}
-              >
+                style={{ fontSize: "30px" }}>
                 Upload Comments
               </button>
               <button
                 onClick={() => {
-                  setWorkoutList((list) => [...list, cardio])
+                  setWorkoutComments((list) => {
+                    return { ...list, workoutComments }
+                  })
                   postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}
-              >
+                style={{ fontSize: "30px" }}>
                 Upload Workout List
               </button>
             </div>

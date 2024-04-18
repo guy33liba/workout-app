@@ -85,23 +85,25 @@ const Abs = () => {
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Share Your Tip With Us .."
-              ></textarea>
+                placeholder="Share Your Tip With Us .."></textarea>
               <button
                 onClick={() => {
-                  setWorkoutComments((comments) => [...comments, commentsInput])
                   postWorkouts()
+                  setWorkoutList((list) => {
+                    return { ...list, abs }
+                  })
                 }}
-                style={{ fontSize: "30px" }}
-              >
+                style={{ fontSize: "30px" }}>
                 Upload Comments
               </button>
               <button
                 onClick={() => {
-                  setWorkoutList((list) => [...list, abs])
+                  setWorkoutList((list) => {
+                    return { ...list, abs: abs }
+                  })
+                  postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}
-              >
+                style={{ fontSize: "30px" }}>
                 Upload Workout List
               </button>
             </div>
