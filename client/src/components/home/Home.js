@@ -11,7 +11,8 @@ const Home = () => {
   const getWorkouts = async () => {
     const { data } = await axios.get("http://localhost:4000/workoutdata")
     updateWorkoutList(abs || legs || upperBody || cardio, data)
-    console.log(data)
+    
+    console.log(workoutList)
   }
   useEffect(() => {
     getWorkouts()
@@ -22,7 +23,6 @@ const Home = () => {
       <video muted loop id="bgVideo">
         <source src={bodyBuilder} type="video/mp4" />
       </video>
-
       <div className="links">
         <div>
           <Link to="/" className="color">
@@ -51,16 +51,27 @@ const Home = () => {
         </div>
       </div>
       <div>
-        {abs || legs || cardio || upperBody ? (
-          <>
+        {abs ||
+          legs ||
+          cardio ||
+          (upperBody && (
             <div className="externalContainer">
               <div className="workoutListItemsContainer">
-                <div></div>
+                {upperBody.map((item, index) => {
+                  return <div key={index}>{item}</div>
+                })}
+                {abs.map((item, index) => {
+                  return <div key={index}>{item}</div>
+                })}
+                {legs.map((item, index) => {
+                  return <div key={index}>{item}</div>
+                })}
+                {cardio.map((item, index) => {
+                  return <div key={index}>{item}</div>
+                })}
               </div>
-              <div></div>
             </div>
-          </>
-        ) : null}
+          ))}
       </div>
     </div>
   )
