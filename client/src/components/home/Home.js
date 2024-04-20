@@ -6,20 +6,11 @@ import axios from "axios"
 import { WorkingOutContext } from "../../context/WorkoutContext"
 
 const Home = () => {
-  const {
-    workoutList,
-    setWorkoutList,
-    abs,
-    cardio,
-    legs,
-    upperBody,
-    workoutComments,
-    setWorkoutComments,
-  } = useContext(WorkingOutContext)
+  const { workoutList, updateWorkoutList } = useContext(WorkingOutContext)
+  const { abs, legs, upperBody, cardio } = workoutList
   const getWorkouts = async () => {
     const { data } = await axios.get("http://localhost:4000/workoutdata")
-    setWorkoutList(data)
-    setWorkoutComments(data)
+    updateWorkoutList(data)
     console.log(data)
   }
   useEffect(() => {
@@ -64,28 +55,9 @@ const Home = () => {
           <>
             <div className="externalContainer">
               <div className="workoutListItemsContainer">
-                {Array.isArray(workoutList) ? (
-                  workoutList.map((item, index) => (
-                    <div>
-                      <div className="workoutListItems" key={index}>
-                        {item.upperBody}
-                        {item.legs}
-                        {item.abs}
-                        {item.cardio}
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div>{workoutList}</div>
-                )}
+                <div></div>
               </div>
-              <div>
-                {Array.isArray(workoutComments) ? (
-                  workoutComments.map((item, index) => <div key={index}>{item.comments}</div>)
-                ) : (
-                  <div>{workoutList}</div>
-                )}
-              </div>
+              <div></div>
             </div>
           </>
         ) : null}

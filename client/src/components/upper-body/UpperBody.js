@@ -12,22 +12,16 @@ import { FaArrowAltCircleLeft } from "react-icons/fa"
 import "./UpperBody.css"
 import { WorkingOutContext } from "../../context/WorkoutContext"
 const UpperBody = () => {
-  const {
-    workoutList,
-    setWorkoutList,
-    upperBody,
-    setUpperBody,
-    setWorkoutComments,
-    workoutComments,
-  } = useContext(WorkingOutContext)
+  const { workoutList, updateWorkoutList } = useContext(WorkingOutContext)
+  const [localStateUpperBody, setLocalStateUpperBody] = useState("")
+  const { upperBody } = workoutList
   const [commentsInput, setCommentsInput] = useState("")
-
   const postWorkouts = async () => {
     const { data } = await axios.post("http://localhost:4000/workoutdata", {
-      upperBody,
+      upperBody: localStateUpperBody,
       commentsInput,
     })
-    setWorkoutList(data)
+    updateWorkoutList(data, localStateUpperBody)
   }
   return (
     <div>
@@ -37,7 +31,7 @@ const UpperBody = () => {
 
       <div className="selecting-container">
         <div className="selecting">
-          <select value={upperBody} onChange={(e) => setUpperBody(e.target.value)}>
+          <select value={localStateUpperBody} onChange={(e) => setLocalStateUpperBody(e.target.value)}>
             <option value="" disabled>
               choose Workout...
             </option>
@@ -96,25 +90,25 @@ const UpperBody = () => {
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Share Your Tip With Us .."></textarea>
+                placeholder="Share Your Tip With Us .."
+              ></textarea>
               <button
                 onClick={() => {
                   postWorkouts()
-                  setWorkoutList((list) => {
-                    return { ...list, upperBody }
-                  })
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Comments
               </button>
               <button
                 onClick={() => {
-                  setWorkoutComments((list) => {
-                    return { ...list, workoutComments }
+                  setCommentsInput((list) => {
+                    return { ...list, commentsInput }
                   })
                   postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Workout List
               </button>
             </div>

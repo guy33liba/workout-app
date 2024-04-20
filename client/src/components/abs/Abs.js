@@ -11,17 +11,18 @@ import { Link } from "react-router-dom"
 import { FaArrowAltCircleLeft } from "react-icons/fa"
 import { WorkingOutContext } from "../../context/WorkoutContext"
 const Abs = () => {
-  const { workoutList, setWorkoutList, abs, setAbs, setWorkoutComments, workoutComments } =
-    useContext(WorkingOutContext)
-
+  const { workoutList, updateWorkoutList } = useContext(WorkingOutContext)
+  const [localStateAbs, setLocalStateAbs] = useState("")
   const [commentsInput, setCommentsInput] = useState("")
+
+  const { abs } = workoutList
 
   const postWorkouts = async () => {
     const { data } = await axios.post("http://localhost:4000/workoutdata", {
-      abs: abs,
+      abs: localStateAbs,
       comments: commentsInput,
     })
-    setWorkoutList(data)
+    updateWorkoutList(data.abs, localStateAbs)
   }
 
   return (
@@ -32,7 +33,7 @@ const Abs = () => {
 
       <div className="selecting-container">
         <div className="selecting">
-          <select value={abs} onChange={(e) => setAbs(e.target.value)}>
+          <select value={localStateAbs} onChange={(e) => setLocalStateAbs(e.target.value)}>
             <option value="" disabled>
               choose Workout...
             </option>
@@ -85,25 +86,22 @@ const Abs = () => {
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Share Your Tip With Us .."></textarea>
+                placeholder="Share Your Tip With Us .."
+              ></textarea>
               <button
                 onClick={() => {
                   postWorkouts()
-                  setWorkoutList((list) => {
-                    return { ...list, abs }
-                  })
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Comments
               </button>
               <button
                 onClick={() => {
-                  setWorkoutList((list) => {
-                    return { ...list, abs: abs }
-                  })
                   postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}>
+                style={{ fontSize: "30px" }}
+              >
                 Upload Workout List
               </button>
             </div>
