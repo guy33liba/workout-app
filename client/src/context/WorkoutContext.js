@@ -1,11 +1,17 @@
 import React, { useState, createContext } from "react"
 
 export const WorkingOutContext = createContext()
+
 const WorkoutContext = ({ children }) => {
-  const [workoutList, setWorkoutList] = useState({ cardio: [], upperBody: [], abs: [], legs: [] })
+  const [workoutList, setWorkoutList] = useState({
+    cardio: [],
+    upperBody: [],
+    abs: [],
+    legs: [],
+  })
 
   const updateWorkoutList = (key, newValue) => {
-    setWorkoutList({ ...workoutList[key].push(newValue) })
+    setWorkoutList((prevWorkoutList) => ({ ...prevWorkoutList[key], newValue }))
   }
 
   return (
