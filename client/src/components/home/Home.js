@@ -10,7 +10,7 @@ const Home = () => {
   const { abs, legs, upperBody, cardio } = workoutList
   const getWorkouts = async () => {
     const { data } = await axios.get("http://localhost:4000/workoutdata")
-    updateWorkoutList(data)
+    updateWorkoutList(abs || legs || upperBody || cardio, data)
     console.log(data)
   }
   useEffect(() => {
