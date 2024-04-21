@@ -1,6 +1,7 @@
 body {
   padding: none;
   margin: none;
+  overflow: hidden;
 }
 .selecting-container {
   display: flex;

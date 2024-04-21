@@ -16,6 +16,7 @@ const Home = () => {
         updateWorkoutList("abs", data)
         updateWorkoutList("legs", data)
         updateWorkoutList("cardio", data)
+        console.log(data)
       } catch (error) {
         console.error("Error fetching workouts:", error)
       }
@@ -58,23 +59,7 @@ const Home = () => {
       </div>
       <div className="externalContainer">
         <div className="workoutListItemsContainer">
-          <div>
-            <h2>Abs</h2>
-            {abs.map((item, index) => (
-              <div key={index} className="workoutItem">
-                {item.abs}
-              </div>
-            ))}
-          </div>
-          <div>
-            <h2>Legs</h2>
-            {legs.map((item, index) => (
-              <div key={index} className="workoutItem">
-                {item.legs}
-              </div>
-            ))}
-          </div>
-          <div>
+          <div className="itemBox">
             <h2>Upper Body</h2>
             {upperBody.map((item, index) => (
               <div key={index} className="workoutItem">
@@ -82,11 +67,27 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <div>
+          <div className="itemBox">
             <h2>Cardio</h2>
             {cardio.map((item, index) => (
               <div key={index} className="workoutItem">
                 {item.cardio}
+              </div>
+            ))}
+          </div>
+          <div className="itemBox">
+            <h2>Abs</h2>
+            {abs.map((item, index) => (
+              <div key={index} className="workoutItem">
+                {item.abs}
+              </div>
+            ))}
+          </div>
+          <div className="itemBox">
+            <h2>Legs</h2>
+            {legs.map((item, index) => (
+              <div key={index} className="workoutItem">
+                {item.legs}
               </div>
             ))}
           </div>
