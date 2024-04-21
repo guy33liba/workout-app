@@ -4,7 +4,7 @@ const app = express()
 const mongoose = require("mongoose")
 app.use(cors())
 app.use(express.json())
-const WorkoutSchema = require("./models/workoutListSchema")
+const WorkoutSchema = require("./workoutListSchema")
 
 const mongoUrl =
   "mongodb+srv://guy33liba:Aa123123@workout.6vzljfv.mongodb.net/?retryWrites=true&w=majority&appName=workout"
