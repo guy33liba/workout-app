@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import bodyBuilder from "../upper-body/videos/body-builder.mp4"
 import "./Home.css"
@@ -8,16 +8,20 @@ import { WorkingOutContext } from "../../context/WorkoutContext"
 const Home = () => {
   const { workoutList, updateWorkoutList } = useContext(WorkingOutContext)
   const { abs, legs, upperBody, cardio } = workoutList
-  const getWorkouts = async () => {
-    const { data } = await axios.get("http://localhost:4000/workoutdata")
-    updateWorkoutList(abs || legs || upperBody || cardio, data)
 
-    console.log(workoutList)
+  const getWorkouts = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:4000/workoutdata")
+      updateWorkoutList({ abs, legs, upperBody, cardio }, data)
+    } catch (error) {
+      console.error("Error fetching workouts:", error)
+    }
   }
+
   useEffect(() => {
     getWorkouts()
   }, [])
-  console.log(workoutList)
+
   return (
     <div className="background-video">
       <video muted loop id="bgVideo">
@@ -50,28 +54,34 @@ const Home = () => {
           </Link>
         </div>
       </div>
-      <div>
-        {abs ||
-          legs ||
-          cardio ||
-          (upperBody && (
-            <div className="externalContainer">
-              <div className="workoutListItemsContainer">
-                {upperBody.map((item, index) => {
-                  return <div key={index}>{item}</div>
-                })}
-                {abs.map((item, index) => {
-                  return <div key={index}>{item}</div>
-                })}
-                {legs.map((item, index) => {
-                  return <div key={index}>{item}</div>
-                })}
-                {cardio.map((item, index) => {
-                  return <div key={index}>{item}</div>
-                })}
-              </div>
-            </div>
-          ))}
+      <div className="externalContainer">
+        <div className="workoutListItemsContainer">
+          {/* Render workouts for each category */}
+          <div>
+            <h2>Abs</h2>
+            {abs.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
+          </div>
+          <div>
+            <h2>Legs</h2>
+            {legs.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
+          </div>
+          <div>
+            <h2>Upper Body</h2>
+            {upperBody.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
+          </div>
+          <div>
+            <h2>Cardio</h2>
+            {cardio.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
