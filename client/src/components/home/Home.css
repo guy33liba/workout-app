@@ -29,26 +29,22 @@
   transition: 0.8s;
   user-select: none;
 }
-.workoutListItems {
-  font-size: 30px;
-  color: white;
-  height: 20px;
-  display: flex;
-  padding: 10px;
-  text-decoration: underline rgb(0, 0, 0, 0.7);
-}
 .workoutListItemsContainer {
-  position: absolute;
-  width: 40%;
+  width: 50%;
   height: 20%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   color: white;
-  
 }
 .externalContainer {
+  top: 10%;
+  position: absolute;
+
   height: 50vh;
-  width: 50vw;
+  width: 100vw;
   border: 5px solid rgb(73, 70, 70);
+}
+.workoutItem {
+  font-size: 30px;
 }

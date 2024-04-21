@@ -10,11 +10,8 @@ const WorkoutContext = ({ children }) => {
     legs: [],
   })
 
-  const updateWorkoutList = (key, newValue) => {
-    setWorkoutList((prevWorkoutList) => ({
-      ...prevWorkoutList,
-      [key]: newValue,
-    }))
+  const updateWorkoutList = (key, newWorkoutList) => {
+    setWorkoutList((prev) => ({ ...prev, [key]: newWorkoutList }))
   }
 
   return (

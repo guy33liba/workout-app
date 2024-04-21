@@ -7,18 +7,20 @@ import { WorkingOutContext } from "../../context/WorkoutContext"
 
 const Home = () => {
   const { workoutList, updateWorkoutList } = useContext(WorkingOutContext)
-  const { abs, legs, upperBody, cardio } = workoutList
-
-  const getWorkouts = async () => {
-    try {
-      const { data } = await axios.get("http://localhost:4000/workoutdata")
-      updateWorkoutList({ abs, legs, upperBody, cardio }, data)
-    } catch (error) {
-      console.error("Error fetching workouts:", error)
-    }
-  }
-
+  const { abs, cardio, legs, upperBody } = workoutList
   useEffect(() => {
+    const getWorkouts = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:4000/workoutdata")
+        updateWorkoutList("upperBody", data)
+        updateWorkoutList("abs", data)
+        updateWorkoutList("legs", data)
+        updateWorkoutList("cardio", data)
+      } catch (error) {
+        console.error("Error fetching workouts:", error)
+      }
+    }
+
     getWorkouts()
   }, [])
 
@@ -56,29 +58,36 @@ const Home = () => {
       </div>
       <div className="externalContainer">
         <div className="workoutListItemsContainer">
-          {/* Render workouts for each category */}
           <div>
             <h2>Abs</h2>
             {abs.map((item, index) => (
-              <div key={index}>{item}</div>
+              <div key={index} className="workoutItem">
+                {item.abs}
+              </div>
             ))}
           </div>
           <div>
             <h2>Legs</h2>
             {legs.map((item, index) => (
-              <div key={index}>{item}</div>
+              <div key={index} className="workoutItem">
+                {item.legs}
+              </div>
             ))}
           </div>
           <div>
             <h2>Upper Body</h2>
             {upperBody.map((item, index) => (
-              <div key={index}>{item}</div>
+              <div key={index} className="workoutItem">
+                {item.upperBody}
+              </div>
             ))}
           </div>
           <div>
             <h2>Cardio</h2>
             {cardio.map((item, index) => (
-              <div key={index}>{item}</div>
+              <div key={index} className="workoutItem">
+                {item.cardio}
+              </div>
             ))}
           </div>
         </div>
