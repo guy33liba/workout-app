@@ -19,8 +19,7 @@ const WorkoutContext = ({ children }) => {
       value={{
         workoutList,
         updateWorkoutList,
-      }}
-    >
+      }}>
       {children}
     </WorkingOutContext.Provider>
   )

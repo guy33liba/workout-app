@@ -31,7 +31,9 @@ const UpperBody = () => {
 
       <div className="selecting-container">
         <div className="selecting">
-          <select value={localStateUpperBody} onChange={(e) => setLocalStateUpperBody(e.target.value)}>
+          <select
+            value={localStateUpperBody}
+            onChange={(e) => setLocalStateUpperBody(e.target.value)}>
             <option value="" disabled>
               choose Workout...
             </option>
@@ -77,7 +79,7 @@ const UpperBody = () => {
         </div>
       </div>
       <div className="commnets-container">
-        <div class="background-video">
+        <div className="background-video">
           <video muted loop id="bgVideo">
             <source src={bodyBuilder} type="video/mp4" />
           </video>
@@ -90,14 +92,12 @@ const UpperBody = () => {
                 id=""
                 cols="30"
                 rows="10"
-                placeholder="Share Your Tip With Us .."
-              ></textarea>
+                placeholder="Share Your Tip With Us .."></textarea>
               <button
                 onClick={() => {
                   postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}
-              >
+                style={{ fontSize: "30px" }}>
                 Upload Comments
               </button>
               <button
@@ -107,8 +107,7 @@ const UpperBody = () => {
                   })
                   postWorkouts()
                 }}
-                style={{ fontSize: "30px" }}
-              >
+                style={{ fontSize: "30px" }}>
                 Upload Workout List
               </button>
             </div>
