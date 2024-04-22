@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import bodyBuilder from "../upper-body/videos/body-builder.mp4"
+import bodyBuilder from "./body_builder.jpg"
+
 import "./Home.css"
 import axios from "axios"
 import { WorkingOutContext } from "../../context/WorkoutContext"
@@ -8,6 +9,8 @@ import { WorkingOutContext } from "../../context/WorkoutContext"
 const Home = () => {
   const { workoutList, updateWorkoutList } = useContext(WorkingOutContext)
   const { abs, cardio, legs, upperBody } = workoutList
+  const [localUpdateToggle, setLocalUpdateToggle] = useState(false)
+  const [localDeleteToggle, setLocalDeleteToggle] = useState(false)
   useEffect(() => {
     const getWorkouts = async () => {
       try {
@@ -27,9 +30,8 @@ const Home = () => {
 
   return (
     <div className="background-video">
-      <video muted loop id="bgVideo">
-        <source src={bodyBuilder} type="video/mp4" />
-      </video>
+      <img className="bgImage" src={bodyBuilder} alt="" />
+
       <div className="links">
         <div>
           <Link to="/" className="color">
@@ -63,15 +65,19 @@ const Home = () => {
             <h2>Upper Body</h2>
             {upperBody.map((item, index) => (
               <div key={index} className="workoutItem">
-                {item.upperBody}
+                <button className="workoutItem">{item.upperBody}</button>
               </div>
             ))}
           </div>
           <div className="itemBox">
             <h2>Cardio</h2>
             {cardio.map((item, index) => (
-              <div key={index} className="workoutItem">
-                {item.cardio}
+              <div
+                key={index}
+                className={localDeleteToggle ? "workoutItem red" : "workoutItem "}
+                onClick={() => setLocalDeleteToggle(!localDeleteToggle)}
+              >
+                <button className={localDeleteToggle ? "workoutItem red" : "workoutItem "}>{item.cardio}</button>
               </div>
             ))}
           </div>
@@ -79,7 +85,7 @@ const Home = () => {
             <h2>Abs</h2>
             {abs.map((item, index) => (
               <div key={index} className="workoutItem">
-                {item.abs}
+                <button className={localDeleteToggle ? "workoutItem red" : "workoutItem "}>{item.abs}</button>
               </div>
             ))}
           </div>
@@ -87,7 +93,9 @@ const Home = () => {
             <h2>Legs</h2>
             {legs.map((item, index) => (
               <div key={index} className="workoutItem">
-                {item.legs}
+                <div>
+                  <button className={localDeleteToggle ? "workoutItem red" : "workoutItem "}>{item.legs}</button>
+                </div>
               </div>
             ))}
           </div>

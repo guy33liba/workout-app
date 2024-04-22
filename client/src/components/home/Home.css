@@ -35,22 +35,26 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 .externalContainer {
   top: 10%;
   position: absolute;
   height: 50vh;
   display: flex;
-  width: 60%;
+  width: 70%;
   border: 5px solid rgb(73, 70, 70);
 }
 .workoutItem {
   font-size: 30px;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
 }
+
 .itemBox {
   align-content: start;
-  width: 286px;
+  width: 334px;
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid white;
 }

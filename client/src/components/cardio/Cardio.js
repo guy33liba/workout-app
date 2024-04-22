@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react"
-import cardioWorkout from "./videos/cardioWorkout.mp4"
-import ChairWorkouttoLoseBellyFat from "./videos/ChairWorkouttoLoseBellyFat.mp4"
+import cardio_Workout from "./videos/cardioWorkout.mp4"
+import ChairWorkout from "./videos/ChairWorkouttoLoseBellyFat.mp4"
 import fatBurner from "./videos/fatBurner.mp4"
 import jumpingJacks from "./videos/jumpingJacks.mp4"
-import bodyBuilder from "./videos/body-builder.mp4"
+import bodyBuilder from "./videos/body_builder.jpg"
 import "./Cardio.css"
 import axios from "axios"
 import { Link } from "react-router-dom"
@@ -13,14 +13,16 @@ const Cardio = () => {
   const { workoutList, updateWorkoutList } = useContext(WorkingOutContext)
   const [localStateCardio, setLocalStateCardio] = useState("")
   const [commentsInput, setCommentsInput] = useState("")
-  const { cardio } = workoutList
 
   const postWorkouts = async () => {
     const { data } = await axios.post("http://localhost:4000/workoutdata", {
-      cardio: cardio,
+      cardio: localStateCardio,
+      comments: commentsInput,
     })
-    updateWorkoutList(data.cardio, cardio)
+    updateWorkoutList(data.cardio, localStateCardio)
+    console.log(data)
   }
+
   return (
     <div>
       <Link to="/">
@@ -33,29 +35,29 @@ const Cardio = () => {
             <option value="" disabled>
               choose Workout...
             </option>
-            <option value="ChairWorkouttoLoseBellyFat">ChairWorkouttoLoseBellyFat</option>
-            <option value="cableDonkeyKickback">cableDonkeyKickback</option>
-            <option value="fatBurner">fatBurner</option>
-            <option value="jumpingJacks">jumpingJacks</option>
+            <option value="Chair_Workout">Chair_Workout</option>
+            <option value="cardio_Workout">cardio_Workout</option>
+            <option value="fat_Burner">fat_Burner</option>
+            <option value="jumping_Jacks">jumpingJacks</option>
           </select>
         </div>
         <div className="videos">
-          {cardio === "fatBurner" && (
+          {localStateCardio === "fat_Burner" && (
             <video className="videos" autoPlay muted width="700" height="500" controls>
               <source src={fatBurner} type="video/mp4" />
             </video>
           )}
-          {cardio === "ChairWorkouttoLoseBellyFat" && (
+          {localStateCardio === "Chair_Workout" && (
             <video className="videos" autoPlay muted width="700" height="500" controls>
-              <source src={ChairWorkouttoLoseBellyFat} type="video/mp4" />
+              <source src={ChairWorkout} type="video/mp4" />
             </video>
           )}
-          {cardio === "cardioWorkout" && (
+          {localStateCardio === "cardio_Workout" && (
             <video className="videos" autoPlay muted width="700" height="500" controls>
-              <source src={cardioWorkout} type="video/mp4" />
+              <source src={cardio_Workout} type="video/mp4" />
             </video>
           )}
-          {cardio === "jumpingJacks" && (
+          {localStateCardio === "jumping_Jacks" && (
             <video className="videos" autoPlay muted width="700" height="500" controls>
               <source src={jumpingJacks} type="video/mp4" />
             </video>
@@ -63,10 +65,9 @@ const Cardio = () => {
         </div>
       </div>
       <div>
-        <div className="background-video">
-          <video muted loop id="bgVideo">
-            <source src={bodyBuilder} type="video/mp4" />
-          </video>
+        <div class="background-video">
+        <img className="bgImage" src={bodyBuilder} alt="" />
+
           <div className="comments">
             <div className="header">tell me how to workout better </div>
             <div>
@@ -88,9 +89,6 @@ const Cardio = () => {
               </button>
               <button
                 onClick={() => {
-                  setCommentsInput((list) => {
-                    return { ...list, commentsInput }
-                  })
                   postWorkouts()
                 }}
                 style={{ fontSize: "30px" }}
