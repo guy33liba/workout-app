@@ -4,17 +4,26 @@ const app = express()
 const mongoose = require("mongoose")
 app.use(cors())
 app.use(express.json())
-const WorkoutSchema = require("./workoutListSchema")
+const WorkoutListModel = require("./workoutListSchema")
 
 const mongoUrl =
   "mongodb+srv://guy33liba:Aa123123@workout.6vzljfv.mongodb.net/?retryWrites=true&w=majority&appName=workout"
 mongoose.connect(mongoUrl)
 
+if (!WorkoutListModel.findOne()) {
+  WorkoutListModel({
+    cardio: [],
+    upperBody: [],
+    abs: [],
+    legs: [],
+  }).save()
+}
+
 app.post("/workoutdata", async (req, res) => {
   try {
-    const newComment = new WorkoutSchema({ ...req.body })
+    const workoutDataInstance = new WorkoutListModel({ ...req.body })
 
-    const savedComment = await newComment.save()
+    const savedComment = await workoutDataInstance.save()
     res.send(savedComment)
   } catch (err) {
     res.status(500).send(err)
@@ -62,11 +71,7 @@ app.put("/workoutdata/:id", async (req, res) => {
   const { id } = req.params
   const { upperBody, abs, cardio, legs } = req.body || ""
   try {
-    const updatedComment = await WorkoutSchema.findByIdAndUpdate(
-      id,
-      { upperBody, abs, cardio, legs },
-      { new: true },
-    )
+    const updatedComment = await WorkoutListModel.findByIdAndUpdate(id, { upperBody, abs, cardio, legs }, { new: true })
     res.send(updatedComment)
   } catch (err) {
     res.status(500).send(err)
@@ -76,7 +81,7 @@ app.put("/workoutdata/:id", async (req, res) => {
 app.delete("/workoutdata/:id", async (req, res) => {
   const { id } = req.params
   try {
-    const deletedComment = await WorkoutSchema.findByIdAndDelete(id)
+    const deletedComment = await WorkoutListModel.findByIdAndDelete(id)
     res.send(deletedComment)
   } catch (err) {
     res.status(500).send(err)
@@ -85,9 +90,17 @@ app.delete("/workoutdata/:id", async (req, res) => {
 
 app.get("/workoutdata", async (req, res) => {
   try {
-    const workoutData = await WorkoutSchema.find({})
-    res.send(workoutData)
-    console.log(workoutData)
+    const workoutList = await WorkoutListModel.findOne({})
+    if (workoutList) {
+      res.send(workoutList)
+    } else {
+      res.send({
+        cardio: [],
+        upperBody: [],
+        abs: [],
+        legs: [],
+      })
+    }
   } catch (err) {
     res.status(500).send(err)
   }

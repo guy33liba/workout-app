@@ -26,9 +26,9 @@ const workoutListSchema = new mongoose.Schema({
       type: String,
     },
   ],
-  repetitions: [{ type: String }],
+  repetitions: [{ type: Number }],
 })
 
-const WorkoutList = mongoose.model("WorkoutList", workoutListSchema)
+const WorkoutListModel = mongoose.model("WorkoutList", workoutListSchema)
 
-module.exports = WorkoutList
+module.exports = WorkoutListModel

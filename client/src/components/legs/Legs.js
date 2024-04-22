@@ -92,7 +92,7 @@ const Legs = () => {
         <img className="bgImage" src={bodyBuilder} alt="" />
 
           <div className="comments">
-            <div className="header">tell me how to workout better </div>
+            <div classNazme="header">tell me how to workout better </div>
             <div>
               <textarea
                 value={commentsInput}

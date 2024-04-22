@@ -11,23 +11,7 @@ const Home = () => {
   const { abs, cardio, legs, upperBody } = workoutList
   const [localUpdateToggle, setLocalUpdateToggle] = useState(false)
   const [localDeleteToggle, setLocalDeleteToggle] = useState(false)
-  useEffect(() => {
-    const getWorkouts = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:4000/workoutdata")
-        updateWorkoutList("upperBody", data)
-        updateWorkoutList("abs", data)
-        updateWorkoutList("legs", data)
-        updateWorkoutList("cardio", data)
-        console.log(data)
-      } catch (error) {
-        console.error("Error fetching workouts:", error)
-      }
-    }
-
-    getWorkouts()
-  }, [])
-
+  console.log(workoutList)
   return (
     <div className="background-video">
       <img className="bgImage" src={bodyBuilder} alt="" />
@@ -63,38 +47,34 @@ const Home = () => {
         <div className="workoutListItemsContainer">
           <div className="itemBox">
             <h2>Upper Body</h2>
-            {upperBody.map((item, index) => (
+            {upperBody?.map((item, index) => (
               <div key={index} className="workoutItem">
-                <button className="workoutItem">{item.upperBody}</button>
+                <button className="workoutItem">{item}</button>
               </div>
             ))}
           </div>
           <div className="itemBox">
             <h2>Cardio</h2>
-            {cardio.map((item, index) => (
-              <div
-                key={index}
-                className={localDeleteToggle ? "workoutItem red" : "workoutItem "}
-                onClick={() => setLocalDeleteToggle(!localDeleteToggle)}
-              >
-                <button className={localDeleteToggle ? "workoutItem red" : "workoutItem "}>{item.cardio}</button>
+            {cardio?.map((item, index) => (
+              <div key={index} className="workoutItem" onClick={() => setLocalDeleteToggle(!localDeleteToggle)}>
+                <button className="workoutItem">{item}</button>
               </div>
             ))}
           </div>
           <div className="itemBox">
             <h2>Abs</h2>
-            {abs.map((item, index) => (
+            {abs?.map((item, index) => (
               <div key={index} className="workoutItem">
-                <button className={localDeleteToggle ? "workoutItem red" : "workoutItem "}>{item.abs}</button>
+                <button className="workoutItem">{item}</button>
               </div>
             ))}
           </div>
           <div className="itemBox">
             <h2>Legs</h2>
-            {legs.map((item, index) => (
+            {legs?.map((item, index) => (
               <div key={index} className="workoutItem">
                 <div>
-                  <button className={localDeleteToggle ? "workoutItem red" : "workoutItem "}>{item.legs}</button>
+                  <button className="workoutItem">{item}</button>
                 </div>
               </div>
             ))}
