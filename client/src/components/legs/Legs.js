@@ -26,7 +26,9 @@ const Legs = () => {
       commentsInput,
     })
     updateWorkoutList(data.legs, localStateLegs)
+    console.log(updateWorkoutList)
   }
+
   return (
     <div>
       <Link to="/">

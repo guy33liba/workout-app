@@ -17,11 +17,11 @@ const WorkoutContext = ({ children }) => {
   useEffect(() => {
     const getUpperBodyWorkouts = async () => {
       const { data } = await axios.get("http://localhost:4000/workoutdata/upperbody")
-      setWorkoutList((prev) => ({ ...prev, abs: data.upperbody }))
+      setWorkoutList((prev) => ({ ...prev, upperbody: data.upperbody }))
     }
     const getCardioWorkouts = async () => {
       const { data } = await axios.get("http://localhost:4000/workoutdata/cardio")
-      setWorkoutList((prev) => ({ ...prev, abs: data.cardio }))
+      setWorkoutList((prev) => ({ ...prev, cardio: data.cardio }))
     }
     const getAbsWorkouts = async () => {
       const { data } = await axios.get("http://localhost:4000/workoutdata/abs")
@@ -29,7 +29,8 @@ const WorkoutContext = ({ children }) => {
     }
     const getLegsWorkout = async () => {
       const { data } = await axios.get("http://localhost:4000/workoutdata/legs")
-      setWorkoutList({ ...data, abs: data.legs })
+      setWorkoutList({ ...data, legs: data.legs })
+      console.log(data)
     }
 
     getCardioWorkouts()
@@ -37,7 +38,6 @@ const WorkoutContext = ({ children }) => {
     getAbsWorkouts()
     getLegsWorkout()
   }, [])
-  console.log(workoutList)
   return (
     <WorkingOutContext.Provider
       value={{

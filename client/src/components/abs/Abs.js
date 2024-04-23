@@ -16,7 +16,6 @@ const Abs = () => {
   const [localStateAbs, setLocalStateAbs] = useState("")
   const [commentsInput, setCommentsInput] = useState("")
 
-
   const postWorkouts = async () => {
     const { data } = await axios.post("http://localhost:4000/workoutdata/abs", {
       abs: localStateAbs,

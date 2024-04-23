@@ -11,7 +11,6 @@ const Home = () => {
   const { abs, cardio, legs, upperBody } = workoutList
   const [localUpdateToggle, setLocalUpdateToggle] = useState(false)
   const [localDeleteToggle, setLocalDeleteToggle] = useState(false)
-  console.log(workoutList)
   return (
     <div className="background-video">
       <img className="bgImage" src={bodyBuilder} alt="" />
