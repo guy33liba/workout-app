@@ -12,7 +12,6 @@
   left: 80%;
   margin-top: 120px;
 }
-
 .color {
   margin-top: 80px;
   transition: ease-in-out 0.5s;
@@ -25,7 +24,7 @@
 .headline {
   color: rgba(99, 123, 255, 0.8);
   font-size: 100px;
-  transition: 0.5s;
+  transition: ease-in 0.5s;
 }
 .headline:hover {
   color: white;
@@ -56,10 +55,53 @@
   cursor: pointer;
   justify-content: center;
 }
-
+.newItem {
+  background-color: rgb(255, 255, 255,0.7);
+  font-size: 30px;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  transition: 1s;
+}
+.newItem:hover {
+  transition: 1s;
+  background-color: aliceblue;
+}
 .itemBox {
   align-content: start;
   width: 334px;
   text-align: center;
   border: 1px solid white;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.workoutItem {
+  animation: slideIn 0.5s ease forwards;
+  opacity: 0; /* Initially hide the element */
+}
+
+.animate {
+  animation: slideIn 0.5s ease forwards;
+  opacity: 1;
+}
+.animateUp {
+  animation: slideUp 1s ease-in-out;
 }

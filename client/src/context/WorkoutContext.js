@@ -30,7 +30,6 @@ const WorkoutContext = ({ children }) => {
     const getLegsWorkout = async () => {
       const { data } = await axios.get("http://localhost:4000/workoutdata/legs")
       setWorkoutList({ ...data, legs: data.legs })
-      console.log(data)
     }
 
     getCardioWorkouts()

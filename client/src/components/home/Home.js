@@ -11,10 +11,13 @@ const Home = () => {
   const { abs, cardio, legs, upperBody } = workoutList
   const [localUpdateToggle, setLocalUpdateToggle] = useState(false)
   const [localDeleteToggle, setLocalDeleteToggle] = useState(false)
+  useEffect(() => {
+    setLocalUpdateToggle(true)
+  }, [])
   return (
     <div className="background-video">
       <img className="bgImage" src={bodyBuilder} alt="" />
-      <div className="links">
+      <div className="links animateUp">
         <div>
           <Link to="/upperBody" className="color">
             UpperBody
@@ -38,36 +41,36 @@ const Home = () => {
       </div>
       <div className="externalContainer">
         <div className="workoutListItemsContainer">
-          <div className="itemBox">
+          <div className={`itemBox ${localUpdateToggle ? "animate" : ""}`}>
             <h2>Upper Body</h2>
             {upperBody?.map((item, index) => (
               <div key={index} className="workoutItem">
-                <button className="workoutItem">{item}</button>
+                <button className="newItem">{item}</button>
               </div>
             ))}
           </div>
-          <div className="itemBox">
+          <div className={`itemBox ${localUpdateToggle ? "animate" : ""}`}>
             <h2>Cardio</h2>
             {cardio?.map((item, index) => (
               <div key={index} className="workoutItem" onClick={() => setLocalDeleteToggle(!localDeleteToggle)}>
-                <button className="workoutItem">{item}</button>
+                <button className="newItem">{item}</button>
               </div>
             ))}
           </div>
-          <div className="itemBox">
+          <div className={`itemBox ${localUpdateToggle ? "animate" : ""}`}>
             <h2>Abs</h2>
             {abs?.map((item, index) => (
               <div key={index} className="workoutItem">
-                <button className="workoutItem">{item}</button>
+                <button className="newItem">{item}</button>
               </div>
             ))}
           </div>
-          <div className="itemBox">
+          <div className={`itemBox ${localUpdateToggle ? "animate" : ""}`}>
             <h2>Legs</h2>
             {legs?.map((item, index) => (
               <div key={index} className="workoutItem">
                 <div>
-                  <button className="workoutItem">{item}</button>
+                  <button className="newItem">{item}</button>
                 </div>
               </div>
             ))}

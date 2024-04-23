@@ -44,19 +44,19 @@ app.post("/workoutdata/legs", async (req, res) => {
 //
 ///
 app.get("/workoutdata/cardio", async (req, res) => {
-  const newCardio = await Workout.find({})
+  const newCardio = await Workout.findOne({})
   res.send(newCardio)
 })
 app.get("/workoutdata/upperbody", async (req, res) => {
-  const newUpperbody = await Workout.find({})
+  const newUpperbody = await Workout.findOne({})
   res.send(newUpperbody)
 })
 app.get("/workoutdata/abs", async (req, res) => {
-  const newAbs = await Workout.find({})
+  const newAbs = await Workout.findOne({})
   res.send(newAbs)
 })
 app.get("/workoutdata/legs", async (req, res) => {
-  const newLegs = await Workout.find({})
+  const newLegs = await Workout.findOne({})
   res.send(newLegs)
 })
 
