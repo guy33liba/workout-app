@@ -17,10 +17,10 @@ const Cardio = () => {
   const postWorkouts = async () => {
     const { data } = await axios.post("http://localhost:4000/workoutdata/cardio", {
       cardio: localStateCardio,
-      comments: commentsInput,
     })
-    updateWorkoutList(data.cardio, localStateCardio)
+    updateWorkoutList(data, localStateCardio)
   }
+  console.log(workoutList)
 
   return (
     <div>

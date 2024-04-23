@@ -40,41 +40,37 @@ const Home = () => {
         <div className="workoutListItemsContainer">
           <div className="itemBox">
             <h2>Upper Body</h2>
-            {upperBody &&
-              upperBody?.map((item, index) => (
-                <div key={index} className="workoutItem">
-                  <button className="workoutItem">{item}</button>
-                </div>
-              ))}
+            {upperBody?.map((item, index) => (
+              <div key={index} className="workoutItem">
+                <button className="workoutItem">{item}</button>
+              </div>
+            ))}
           </div>
           <div className="itemBox">
             <h2>Cardio</h2>
-            {cardio &&
-              cardio?.map((item, index) => (
-                <div key={index} className="workoutItem" onClick={() => setLocalDeleteToggle(!localDeleteToggle)}>
-                  <button className="workoutItem">{item}</button>
-                </div>
-              ))}
+            {cardio?.map((item, index) => (
+              <div key={index} className="workoutItem" onClick={() => setLocalDeleteToggle(!localDeleteToggle)}>
+                <button className="workoutItem">{item}</button>
+              </div>
+            ))}
           </div>
           <div className="itemBox">
             <h2>Abs</h2>
-            {abs &&
-              abs?.map((item, index) => (
-                <div key={index} className="workoutItem">
-                  <button className="workoutItem">{item}</button>
-                </div>
-              ))}
+            {abs?.map((item, index) => (
+              <div key={index} className="workoutItem">
+                <button className="workoutItem">{item}</button>
+              </div>
+            ))}
           </div>
           <div className="itemBox">
             <h2>Legs</h2>
-            {legs &&
-              legs?.map((item, index) => (
-                <div key={index} className="workoutItem">
-                  <div>
-                    <button className="workoutItem">{item}</button>
-                  </div>
+            {legs?.map((item, index) => (
+              <div key={index} className="workoutItem">
+                <div>
+                  <button className="workoutItem">{item}</button>
                 </div>
-              ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -16,7 +16,6 @@ app.post("/workoutdata/upperbody", async (req, res) => {
     upperBody,
   })
   await workout.save()
-  res.send(workout)
 })
 app.post("/workoutdata/cardio", async (req, res) => {
   const { cardio } = req.body
@@ -24,7 +23,6 @@ app.post("/workoutdata/cardio", async (req, res) => {
     cardio,
   })
   await workout.save()
-  res.send(workout)
 })
 app.post("/workoutdata/abs", async (req, res) => {
   const { abs } = req.body
