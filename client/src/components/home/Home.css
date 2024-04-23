@@ -7,14 +7,19 @@
   position: absolute;
   left: 57%;
   text-decoration: none;
+  flex-direction: column;
+  position: absolute;
+  left: 80%;
+  margin-top: 120px;
 }
 
 .color {
+  margin-top: 80px;
   transition: ease-in-out 0.5s;
   color: rgb(255, 255, 255);
 }
 .color:hover {
-  color: rgb(255, 255, 255, 0.5);
+  color: rgba(202, 202, 255, 0.5);
   transition: 0.5s;
 }
 .headline {

@@ -18,26 +18,21 @@ const Home = () => {
 
       <div className="links">
         <div>
-          <Link to="/" className="color">
-            Home
-          </Link>
-        </div>
-        <div>
           <Link to="/upperBody" className="color">
             UpperBody
           </Link>
         </div>
-        <div>
+        <div className="color">
           <Link to="/Legs" className="color">
             Legs
           </Link>
         </div>
-        <div>
+        <div className="color">
           <Link to="/Cardio" className="color">
             Cardio
           </Link>
         </div>
-        <div>
+        <div className="color">
           <Link to="/Abs" className="color">
             Abs
           </Link>

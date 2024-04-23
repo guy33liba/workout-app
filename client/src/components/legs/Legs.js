@@ -18,7 +18,6 @@ const Legs = () => {
   const { workoutList, updateWorkoutList } = useContext(WorkingOutContext)
 
   const [commentsInput, setCommentsInput] = useState("")
-  const { legs } = workoutList
   const [localStateLegs, setLocalStateLegs] = useState("")
 
   const postWorkouts = async () => {
@@ -88,11 +87,11 @@ const Legs = () => {
         </div>
       </div>
       <div>
-        <div class="background-video">
-        <img className="bgImage" src={bodyBuilder} alt="" />
+        <div className="background-video">
+          <img className="bgImage" src={bodyBuilder} alt="" />
 
           <div className="comments">
-            <div classNazme="header">tell me how to workout better </div>
+            <div className="header">tell me how to workout better </div>
             <div>
               <textarea
                 value={commentsInput}

@@ -10,19 +10,24 @@ const mongoUrl =
   "mongodb+srv://guy33liba:Aa123123@workout.6vzljfv.mongodb.net/?retryWrites=true&w=majority&appName=workout"
 mongoose.connect(mongoUrl)
 
-if (!WorkoutListModel.findOne()) {
-  WorkoutListModel({
-    cardio: [],
-    upperBody: [],
-    abs: [],
-    legs: [],
-  }).save()
+const defaultWorkoutList = {
+  cardio: [],
+  upperBody: [],
+  abs: [],
+  legs: [],
 }
 
+WorkoutListModel.findOne().then((result) => {
+  if (!result) {
+    // No document found, create a default one
+    WorkoutListModel.create(defaultWorkoutList)
+      .then(() => console.log("Default workout list created"))
+      .catch((error) => console.error("Error creating default workout list:", error))
+  }
+})
 app.post("/workoutdata", async (req, res) => {
   try {
     const workoutDataInstance = new WorkoutListModel({ ...req.body })
-
     const savedComment = await workoutDataInstance.save()
     res.send(savedComment)
   } catch (err) {
@@ -90,9 +95,14 @@ app.delete("/workoutdata/:id", async (req, res) => {
 
 app.get("/workoutdata", async (req, res) => {
   try {
-    const workoutList = await WorkoutListModel.findOne({})
+    const workoutList = await WorkoutListModel.findOne()
     if (workoutList) {
-      res.send(workoutList)
+      res.send({
+        cardio: workoutList.cardio,
+        upperBody: workoutList.upperBody,
+        abs: workoutList.abs,
+        legs: workoutList.legs,
+      })
     } else {
       res.send({
         cardio: [],

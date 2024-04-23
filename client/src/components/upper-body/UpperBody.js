@@ -22,8 +22,7 @@ const UpperBody = () => {
       commentsInput,
     })
 
-    updateWorkoutList(data, localStateUpperBody)
-    console.log(workoutList)
+    updateWorkoutList(data.upperBody, localStateUpperBody)
   }
   return (
     <div>

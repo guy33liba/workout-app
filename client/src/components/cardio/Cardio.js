@@ -20,7 +20,7 @@ const Cardio = () => {
       comments: commentsInput,
     })
     updateWorkoutList(data.cardio, localStateCardio)
-    console.log(data)
+    console.log(data.cardio)
   }
 
   return (
@@ -66,7 +66,7 @@ const Cardio = () => {
       </div>
       <div>
         <div class="background-video">
-        <img className="bgImage" src={bodyBuilder} alt="" />
+          <img className="bgImage" src={bodyBuilder} alt="" />
 
           <div className="comments">
             <div className="header">tell me how to workout better </div>
