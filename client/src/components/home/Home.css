@@ -56,22 +56,26 @@
   justify-content: center;
 }
 .newItem {
-  background-color: rgb(255, 255, 255,0.7);
+  background-color: aliceblue;
   font-size: 30px;
   display: flex;
   cursor: pointer;
   justify-content: center;
-  transition: 1s;
+  transition: 0.3s;
+  border-radius: 8px;
 }
 .newItem:hover {
-  transition: 1s;
-  background-color: aliceblue;
+  transition: 0.3s;
+  font-size: 35px;
 }
 .itemBox {
   align-content: start;
   width: 334px;
   text-align: center;
   border: 1px solid white;
+}
+.red {
+  background-color: red;
 }
 @keyframes slideIn {
   0% {

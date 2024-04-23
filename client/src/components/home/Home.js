@@ -45,7 +45,12 @@ const Home = () => {
             <h2>Upper Body</h2>
             {upperBody?.map((item, index) => (
               <div key={index} className="workoutItem">
-                <button className="newItem">{item}</button>
+                <button
+                  className={localDeleteToggle ? "newItem red" : "newItem"}
+                  onClick={() => setLocalDeleteToggle(!localDeleteToggle)}
+                >
+                  {item}
+                </button>
               </div>
             ))}
           </div>
@@ -53,7 +58,12 @@ const Home = () => {
             <h2>Cardio</h2>
             {cardio?.map((item, index) => (
               <div key={index} className="workoutItem" onClick={() => setLocalDeleteToggle(!localDeleteToggle)}>
-                <button className="newItem">{item}</button>
+                <button
+                  className={localDeleteToggle ? "newItem red" : "newItem"}
+                  onClick={() => setLocalDeleteToggle(!localDeleteToggle)}
+                >
+                  {item}
+                </button>
               </div>
             ))}
           </div>
@@ -61,7 +71,12 @@ const Home = () => {
             <h2>Abs</h2>
             {abs?.map((item, index) => (
               <div key={index} className="workoutItem">
-                <button className="newItem">{item}</button>
+                <button
+                  className={localDeleteToggle ? "newItem red" : "newItem"}
+                  onClick={() => setLocalDeleteToggle(!localDeleteToggle)}
+                >
+                  {item}
+                </button>
               </div>
             ))}
           </div>
@@ -70,7 +85,12 @@ const Home = () => {
             {legs?.map((item, index) => (
               <div key={index} className="workoutItem">
                 <div>
-                  <button className="newItem">{item}</button>
+                  <button
+                    className={localDeleteToggle ? "newItem red" : "newItem"}
+                    onClick={() => setLocalDeleteToggle(!localDeleteToggle)}
+                  >
+                    {item}
+                  </button>
                 </div>
               </div>
             ))}
