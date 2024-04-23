@@ -15,19 +15,29 @@ const WorkoutContext = ({ children }) => {
   }
 
   useEffect(() => {
-    const getWorkouts = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:4000/workoutdata")
-        const { upperBody, cardio, abs, legs } = data
-        if (upperBody || cardio || abs || legs) {
-          setWorkoutList({ ...data })
-        }
-      } catch (error) {
-        console.error("Error fetching workouts:", error)
-      }
+    const getUpperBodyWorkouts = async () => {
+      const { data } = await axios.get("http://localhost:4000/workoutdata/upperbody")
+      setWorkoutList((prev) => ({ ...prev, abs: data.upperbody }))
     }
-    getWorkouts()
+    const getCardioWorkouts = async () => {
+      const { data } = await axios.get("http://localhost:4000/workoutdata/cardio")
+      setWorkoutList((prev) => ({ ...prev, abs: data.cardio }))
+    }
+    const getAbsWorkouts = async () => {
+      const { data } = await axios.get("http://localhost:4000/workoutdata/abs")
+      setWorkoutList((prev) => ({ ...prev, abs: data.abs }))
+    }
+    const getLegsWorkout = async () => {
+      const { data } = await axios.get("http://localhost:4000/workoutdata/legs")
+      setWorkoutList({ ...data, abs: data.legs })
+    }
+
+    getCardioWorkouts()
+    getUpperBodyWorkouts()
+    getAbsWorkouts()
+    getLegsWorkout()
   }, [])
+  console.log(workoutList)
   return (
     <WorkingOutContext.Provider
       value={{

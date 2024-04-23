@@ -15,12 +15,11 @@ const Cardio = () => {
   const [commentsInput, setCommentsInput] = useState("")
 
   const postWorkouts = async () => {
-    const { data } = await axios.post("http://localhost:4000/workoutdata", {
+    const { data } = await axios.post("http://localhost:4000/workoutdata/cardio", {
       cardio: localStateCardio,
       comments: commentsInput,
     })
     updateWorkoutList(data.cardio, localStateCardio)
-    console.log(data.cardio)
   }
 
   return (
@@ -65,7 +64,7 @@ const Cardio = () => {
         </div>
       </div>
       <div>
-        <div class="background-video">
+        <div className="background-video">
           <img className="bgImage" src={bodyBuilder} alt="" />
 
           <div className="comments">

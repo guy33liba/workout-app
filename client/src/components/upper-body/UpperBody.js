@@ -17,7 +17,7 @@ const UpperBody = () => {
   const [localStateUpperBody, setLocalStateUpperBody] = useState("")
   const [commentsInput, setCommentsInput] = useState("")
   const postWorkouts = async () => {
-    const { data } = await axios.post("http://localhost:4000/workoutdata", {
+    const { data } = await axios.post("http://localhost:4000/workoutdata/upperbody", {
       upperBody: localStateUpperBody,
       commentsInput,
     })

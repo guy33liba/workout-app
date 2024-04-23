@@ -4,79 +4,67 @@ const app = express()
 const mongoose = require("mongoose")
 app.use(cors())
 app.use(express.json())
-const WorkoutListModel = require("./workoutListSchema")
+const Workout = require("./workoutListSchema")
 
 const mongoUrl =
   "mongodb+srv://guy33liba:Aa123123@workout.6vzljfv.mongodb.net/?retryWrites=true&w=majority&appName=workout"
 mongoose.connect(mongoUrl)
 
-const defaultWorkoutList = {
-  cardio: [],
-  upperBody: [],
-  abs: [],
-  legs: [],
-}
+app.post("/workoutdata/upperbody", async (req, res) => {
+  const { upperBody } = req.body
+  const workout = new Workout({
+    upperBody,
+  })
+  await workout.save()
+})
+app.post("/workoutdata/cardio", async (req, res) => {
+  const { cardio } = req.body
+  const workout = new Workout({
+    cardio,
+  })
+  await workout.save()
+})
+app.post("/workoutdata/abs", async (req, res) => {
+  const { abs } = req.body
+  const workout = new Workout({
+    abs,
+  })
+  await workout.save()
+})
+app.post("/workoutdata/legs", async (req, res) => {
+  const { legs } = req.body
+  const workout = new Workout({
+    legs,
+  })
+  await workout.save()
+})
 
-WorkoutListModel.findOne().then((result) => {
-  if (!result) {
-    // No document found, create a default one
-    WorkoutListModel.create(defaultWorkoutList)
-      .then(() => console.log("Default workout list created"))
-      .catch((error) => console.error("Error creating default workout list:", error))
-  }
+//
+///
+app.get("/workoutdata/cardio", async (req, res) => {
+  const newCardio = await Workout.find({})
+  res.send(newCardio)
 })
-app.post("/workoutdata", async (req, res) => {
-  try {
-    const workoutDataInstance = new WorkoutListModel({ ...req.body })
-    const savedComment = await workoutDataInstance.save()
-    res.send(savedComment)
-  } catch (err) {
-    res.status(500).send(err)
-  }
+app.get("/workoutdata/upperbody", async (req, res) => {
+  const newUpperbody = await Workout.find({})
+  res.send(newUpperbody)
 })
-// const newComment = new WorkoutData({
-//   upperBody: req.body.upperBody,
-//   abs: req.body.abs,
-//   cardio: req.body.cardio,
-//   legs: req.body.legs,
-//   commentInput: req.body.commentsInput,
-//   workoutList: req.body.workoutList,
-// })
-// app.post("/workoutdata/upperbody", async (req, res) => {
-//   const { upperBody, abs, cardio, legs, commentsInput, workoutList } = req.body
-//   try {
-//     const newComment = new WorkoutData({ upperBody, abs, cardio, legs, commentsInput, workoutList })
-//     const savedComment = await newComment.save()
-//     res.send(savedComment)
-//   } catch (err) {
-//     res.status(500).send(err)
-//   }
-// })
-// app.post("/workoutdata/cardio", async (req, res) => {
-//   const { upperBody, abs, cardio, legs, commentsInput, workoutList } = req.body
-//   try {
-//     const newComment = new WorkoutData({ upperBody, abs, cardio, legs, commentsInput, workoutList })
-//     const savedComment = await newComment.save()
-//     res.send(savedComment)
-//   } catch (err) {
-//     res.status(500).send(err)
-//   }
-// })
-// app.post("/workoutdata/legs", async (req, res) => {
-//   const { upperBody, abs, cardio, legs, commentsInput, workoutList } = req.body
-//   try {
-//     const newComment = new WorkoutData({ upperBody, abs, cardio, legs, commentsInput, workoutList })
-//     const savedComment = await newComment.save()
-//     res.send(savedComment)
-//   } catch (err) {
-//     res.status(500).send(err)
-//   }
-// })
+app.get("/workoutdata/abs", async (req, res) => {
+  const newAbs = await Workout.find({})
+  res.send(newAbs)
+})
+app.get("/workoutdata/legs", async (req, res) => {
+  const newLegs = await Workout.find({})
+  res.send(newLegs)
+})
+
+//
+//
 app.put("/workoutdata/:id", async (req, res) => {
   const { id } = req.params
   const { upperBody, abs, cardio, legs } = req.body || ""
   try {
-    const updatedComment = await WorkoutListModel.findByIdAndUpdate(id, { upperBody, abs, cardio, legs }, { new: true })
+    const updatedComment = await Workout.findByIdAndUpdate(id, { upperBody, abs, cardio, legs }, { new: true })
     res.send(updatedComment)
   } catch (err) {
     res.status(500).send(err)
@@ -86,34 +74,10 @@ app.put("/workoutdata/:id", async (req, res) => {
 app.delete("/workoutdata/:id", async (req, res) => {
   const { id } = req.params
   try {
-    const deletedComment = await WorkoutListModel.findByIdAndDelete(id)
+    const deletedComment = await Workout.findByIdAndDelete(id)
     res.send(deletedComment)
   } catch (err) {
     res.status(500).send(err)
   }
 })
-
-app.get("/workoutdata", async (req, res) => {
-  try {
-    const workoutList = await WorkoutListModel.findOne()
-    if (workoutList) {
-      res.send({
-        cardio: workoutList.cardio,
-        upperBody: workoutList.upperBody,
-        abs: workoutList.abs,
-        legs: workoutList.legs,
-      })
-    } else {
-      res.send({
-        cardio: [],
-        upperBody: [],
-        abs: [],
-        legs: [],
-      })
-    }
-  } catch (err) {
-    res.status(500).send(err)
-  }
-})
-
 app.listen(4000)

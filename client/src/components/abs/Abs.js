@@ -18,7 +18,7 @@ const Abs = () => {
 
 
   const postWorkouts = async () => {
-    const { data } = await axios.post("http://localhost:4000/workoutdata", {
+    const { data } = await axios.post("http://localhost:4000/workoutdata/abs", {
       abs: localStateAbs,
       comments: commentsInput,
     })
@@ -73,7 +73,7 @@ const Abs = () => {
         </div>
       </div>
       <div>
-        <div class="background-video">
+        <div className="background-video">
           <img className="bgImage" src={bodyBuilder} alt="" />
           <div className="comments">
             <div className="header">tell me how to workout better </div>

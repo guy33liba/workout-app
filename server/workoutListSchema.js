@@ -1,34 +1,12 @@
 const mongoose = require("mongoose")
 
-const workoutListSchema = new mongoose.Schema({
-  upperBody: [
-    {
-      type: String,
-    },
-  ],
-  abs: [
-    {
-      type: String,
-    },
-  ],
-  cardio: [
-    {
-      type: String,
-    },
-  ],
-  legs: [
-    {
-      type: String,
-    },
-  ],
-  duration: [
-    {
-      type: String,
-    },
-  ],
-  repetitions: [{ type: Number }],
+const workoutSchema = new mongoose.Schema({
+  cardio: [String],
+  upperBody: [String],
+  abs: [String],
+  legs: [String],
 })
 
-const WorkoutListModel = mongoose.model("WorkoutList", workoutListSchema)
+const Workout = mongoose.model("Workout", workoutSchema)
 
-module.exports = WorkoutListModel
+module.exports = Workout

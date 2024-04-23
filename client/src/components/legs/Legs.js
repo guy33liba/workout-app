@@ -21,7 +21,7 @@ const Legs = () => {
   const [localStateLegs, setLocalStateLegs] = useState("")
 
   const postWorkouts = async () => {
-    const { data } = await axios.post("http://localhost:4000/workoutdata", {
+    const { data } = await axios.post("http://localhost:4000/workoutdata/legs", {
       legs: localStateLegs,
       commentsInput,
     })

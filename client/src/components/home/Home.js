@@ -15,7 +15,6 @@ const Home = () => {
   return (
     <div className="background-video">
       <img className="bgImage" src={bodyBuilder} alt="" />
-
       <div className="links">
         <div>
           <Link to="/upperBody" className="color">
@@ -42,37 +41,41 @@ const Home = () => {
         <div className="workoutListItemsContainer">
           <div className="itemBox">
             <h2>Upper Body</h2>
-            {upperBody?.map((item, index) => (
-              <div key={index} className="workoutItem">
-                <button className="workoutItem">{item}</button>
-              </div>
-            ))}
+            {upperBody &&
+              upperBody?.map((item, index) => (
+                <div key={index} className="workoutItem">
+                  <button className="workoutItem">{item}</button>
+                </div>
+              ))}
           </div>
           <div className="itemBox">
             <h2>Cardio</h2>
-            {cardio?.map((item, index) => (
-              <div key={index} className="workoutItem" onClick={() => setLocalDeleteToggle(!localDeleteToggle)}>
-                <button className="workoutItem">{item}</button>
-              </div>
-            ))}
+            {cardio &&
+              cardio?.map((item, index) => (
+                <div key={index} className="workoutItem" onClick={() => setLocalDeleteToggle(!localDeleteToggle)}>
+                  <button className="workoutItem">{item}</button>
+                </div>
+              ))}
           </div>
           <div className="itemBox">
             <h2>Abs</h2>
-            {abs?.map((item, index) => (
-              <div key={index} className="workoutItem">
-                <button className="workoutItem">{item}</button>
-              </div>
-            ))}
+            {abs &&
+              abs?.map((item, index) => (
+                <div key={index} className="workoutItem">
+                  <button className="workoutItem">{item}</button>
+                </div>
+              ))}
           </div>
           <div className="itemBox">
             <h2>Legs</h2>
-            {legs?.map((item, index) => (
-              <div key={index} className="workoutItem">
-                <div>
-                  <button className="workoutItem">{item}</button>
+            {legs &&
+              legs?.map((item, index) => (
+                <div key={index} className="workoutItem">
+                  <div>
+                    <button className="workoutItem">{item}</button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>
