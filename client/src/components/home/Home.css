@@ -64,6 +64,17 @@
   transition: 0.3s;
   border-radius: 8px;
 }
+h1 {
+  text-align: center;
+  color: aliceblue;
+  border: 5px solid rgb(255, 255, 255);
+  padding: 10px;
+  width: 400px;
+  position: absolute;
+  left: 40%;
+  margin: 0;
+  font-size: 40px;
+}
 .newItem:hover {
   transition: 0.3s;
   font-size: 35px;

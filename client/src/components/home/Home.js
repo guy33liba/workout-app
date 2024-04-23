@@ -16,6 +16,7 @@ const Home = () => {
   }, [])
   return (
     <div className="background-video">
+      <h1>your own workout</h1>
       <img className="bgImage" src={bodyBuilder} alt="" />
       <div className="links animateUp">
         <div>
