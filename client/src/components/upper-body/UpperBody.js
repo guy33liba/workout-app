@@ -17,12 +17,12 @@ const UpperBody = () => {
   const [localStateUpperBody, setLocalStateUpperBody] = useState("")
   const [commentsInput, setCommentsInput] = useState("")
   const postWorkouts = async () => {
-    const { data } = await axios.post("http://localhost:4000/workoutdata/upperbody", {
+    const { data } = await axios.post(`http://localhost:4000/workoutdata/upperbody`, {
       upperBody: localStateUpperBody,
       commentsInput,
     })
-
     updateWorkoutList(data.upperBody, localStateUpperBody)
+    console.log('success')
   }
   return (
     <div>
@@ -99,17 +99,20 @@ const UpperBody = () => {
               >
                 Upload Comments
               </button>
-              <button
-                onClick={() => {
-                  setCommentsInput((list) => {
-                    return { ...list, commentsInput }
-                  })
-                  postWorkouts()
-                }}
-                style={{ fontSize: "30px" }}
-              >
-                Upload Workout List
-              </button>
+
+              <Link to="/">
+                <button
+                  onClick={() => {
+                    setCommentsInput((list) => {
+                      return { ...list, commentsInput }
+                    })
+                    postWorkouts()
+                  }}
+                  style={{ fontSize: "30px" }}
+                >
+                  Upload Workout List
+                </button>
+              </Link>
             </div>
           </div>
         </div>

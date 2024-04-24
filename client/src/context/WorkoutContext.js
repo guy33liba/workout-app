@@ -17,25 +17,25 @@ const WorkoutContext = ({ children }) => {
   useEffect(() => {
     const getUpperBodyWorkouts = async () => {
       const { data } = await axios.get("http://localhost:4000/workoutdata/upperbody")
-      setWorkoutList((prev) => ({ ...prev, upperbody: data.upperbody }))
+      setWorkoutList({ ...data })
     }
-    const getCardioWorkouts = async () => {
-      const { data } = await axios.get("http://localhost:4000/workoutdata/cardio")
-      setWorkoutList((prev) => ({ ...prev, cardio: data.cardio }))
-    }
-    const getAbsWorkouts = async () => {
-      const { data } = await axios.get("http://localhost:4000/workoutdata/abs")
-      setWorkoutList((prev) => ({ ...prev, abs: data.abs }))
-    }
-    const getLegsWorkout = async () => {
-      const { data } = await axios.get("http://localhost:4000/workoutdata/legs")
-      setWorkoutList({ ...data, legs: data.legs })
-    }
+    // const getCardioWorkouts = async () => {
+    //   const { data } = await axios.get("http://localhost:4000/workoutdata/cardio")
+    //   setWorkoutList((prev) => ({ ...prev, cardio: data.cardio }))
+    // }
+    // const getAbsWorkouts = async () => {
+    //   const { data } = await axios.get("http://localhost:4000/workoutdata/abs")
+    //   setWorkoutList((prev) => ({ ...prev, abs: data.abs }))
+    // }
+    // const getLegsWorkout = async () => {
+    //   const { data } = await axios.get("http://localhost:4000/workoutdata/legs")
+    //   setWorkoutList((prev) => ({ ...prev, legs: data.legs }))
+    // }
 
-    getCardioWorkouts()
     getUpperBodyWorkouts()
-    getAbsWorkouts()
-    getLegsWorkout()
+    // getCardioWorkouts()
+    // getAbsWorkouts()
+    // getLegsWorkout()
   }, [])
   return (
     <WorkingOutContext.Provider

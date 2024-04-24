@@ -10,36 +10,50 @@ const mongoUrl =
   "mongodb+srv://guy33liba:Aa123123@workout.6vzljfv.mongodb.net/?retryWrites=true&w=majority&appName=workout"
 mongoose.connect(mongoUrl)
 
+const newWorkout = {
+  upperBody: [],
+  abs: [],
+  legs: [],
+  cardio: [],
+}
+const createNewSomeThing = async () => {
+  if (!(await Workout.findOne({}))) {
+    new Workout(newWorkout).save()
+  }
+}
+createNewSomeThing()
 app.post("/workoutdata/upperbody", async (req, res) => {
   const { upperBody } = req.body
-  const workout = new Workout({
-    upperBody,
-  })
-  await workout.save()
+  const newArray = await Workout.findOne({}).lean()
+  newArray.upperBody.push(upperBody)
+
+  const kaka = await Workout.updateOne({ id: newArray._id }, { upperBody: newArray })
+  res.send(kaka)
 })
-app.post("/workoutdata/cardio", async (req, res) => {
-  const { cardio } = req.body
-  const workout = new Workout({
-    cardio,
-  })
-  await workout.save()
-})
-app.post("/workoutdata/abs", async (req, res) => {
-  const { abs } = req.body
-  const workout = new Workout({
-    abs,
-  })
-  await workout.save()
-  res.send(workout)
-})
-app.post("/workoutdata/legs", async (req, res) => {
-  const { legs } = req.body
-  const workout = new Workout({
-    legs,
-  })
-  await workout.save()
-  res.send(workout)
-})
+// app.post("/workoutdata/cardio", async (req, res) => {
+//   const { cardio } = req.body
+//   const workout = new Workout({
+//     cardio,
+//   })
+//   await workout.save()
+//   res.send(workout)
+// })
+// app.post("/workoutdata/abs", async (req, res) => {
+//   const { abs } = req.body
+//   const workout = new Workout({
+//     abs,
+//   })
+//   await workout.save()
+//   res.send(workout)
+// })
+// app.post("/workoutdata/legs", async (req, res) => {
+//   const { legs } = req.body
+//   const workout = new Workout({
+//     legs,
+//   })
+//   await workout.save()
+//   res.send(workout)
+// })
 
 //
 ///
@@ -62,24 +76,5 @@ app.get("/workoutdata/legs", async (req, res) => {
 
 //
 //
-app.put("/workoutdata/:id", async (req, res) => {
-  const { id } = req.params
-  const { upperBody, abs, cardio, legs } = req.body || ""
-  try {
-    const updatedComment = await Workout.findByIdAndUpdate(id, { upperBody, abs, cardio, legs }, { new: true })
-    res.send(updatedComment)
-  } catch (err) {
-    res.status(500).send(err)
-  }
-})
 
-app.delete("/workoutdata/:id", async (req, res) => {
-  const { id } = req.params
-  try {
-    const deletedComment = await Workout.findByIdAndDelete(id)
-    res.send(deletedComment)
-  } catch (err) {
-    res.status(500).send(err)
-  }
-})
 app.listen(4000)

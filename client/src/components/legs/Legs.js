@@ -21,16 +21,11 @@ const Legs = () => {
   const [localStateLegs, setLocalStateLegs] = useState("")
 
   const postWorkouts = async () => {
-    try {
-      const { data } = await axios.post("http://localhost:4000/workoutdata/legs", {
-        legs: localStateLegs,
-        commentsInput,
-      })
-      updateWorkoutList(data.legs, localStateLegs)
-      console.log("updateWorkoutList")
-    } catch (error) {
-      console.log(error)
-    }
+    const { data } = await axios.post("http://localhost:4000/workoutdata/legs", {
+      legs: localStateLegs,
+      commentsInput,
+    })
+    updateWorkoutList(data.legs, localStateLegs)
   }
 
   return (
@@ -115,17 +110,19 @@ const Legs = () => {
               >
                 Upload Comments
               </button>
-              <button
-                onClick={() => {
-                  setCommentsInput((list) => {
-                    return { ...list, commentsInput }
-                  })
-                  postWorkouts()
-                }}
-                style={{ fontSize: "30px" }}
-              >
-                Upload Workout List
-              </button>
+              <Link to="/">
+                <button
+                  onClick={() => {
+                    setCommentsInput((list) => {
+                      return { ...list, commentsInput }
+                    })
+                    postWorkouts()
+                  }}
+                  style={{ fontSize: "30px" }}
+                >
+                  Upload Workout List
+                </button>
+              </Link>
             </div>
           </div>
         </div>

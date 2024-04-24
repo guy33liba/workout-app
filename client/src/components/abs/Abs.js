@@ -93,14 +93,16 @@ const Abs = () => {
               >
                 Upload Comments
               </button>
-              <button
-                onClick={() => {
-                  postWorkouts()
-                }}
-                style={{ fontSize: "30px" }}
-              >
-                Upload Workout List
-              </button>
+              <Link to="/">
+                <button
+                  onClick={() => {
+                    postWorkouts()
+                  }}
+                  style={{ fontSize: "30px" }}
+                >
+                  Upload Workout List
+                </button>
+              </Link>
             </div>
           </div>
         </div>
