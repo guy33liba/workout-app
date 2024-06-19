@@ -5,7 +5,6 @@ body {
   background: #f4f4f4;
 }
 
-<<<<<<< HEAD
 .container {
   max-width: 600px;
   margin: 50px auto;
@@ -13,7 +12,7 @@ body {
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-=======
+}
 .bgImage {
   position: absolute;
   top: 50%;
@@ -24,7 +23,6 @@ body {
   height: auto;
   z-index: -100;
   transform: translateX(-50%) translateY(-50%);
->>>>>>> 2be353fb249a8ff6887ecf54dee991d76367d932
 }
 
 h2 {
