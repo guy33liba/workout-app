@@ -1,5 +1,6 @@
 import axios from "axios"
 import React, { useState, createContext, useEffect } from "react"
+
 export const WorkingOutContext = createContext()
 
 const WorkoutContext = ({ children }) => {
@@ -21,7 +22,7 @@ const WorkoutContext = ({ children }) => {
     }
     // const getCardioWorkouts = async () => {
     //   const { data } = await axios.get("http://localhost:4000/workoutdata/cardio")
-    //   setWorkoutList((prev) => ({ ...prev, cardio: data.cardio }))
+    //   setWorkoutList((prev) => ({ ...prev, cardio: dדata.cardio }))
     // }
     // const getAbsWorkouts = async () => {
     //   const { data } = await axios.get("http://localhost:4000/workoutdata/abs")
