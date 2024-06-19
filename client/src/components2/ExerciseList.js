@@ -6,7 +6,7 @@ const ExerciseList = () => {
 
   useEffect(() => {
     axios
-      .get("/api/exercises")
+      .get("/exercises")
       .then((response) => setExercises(response.data))
       .catch((error) => console.error("Error fetching exercises:", error))
   }, [])

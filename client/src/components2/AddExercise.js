@@ -7,7 +7,7 @@ const AddExercise = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     axios
-      .post("/api/exercises", { name, reps })
+      .post("/exercises", { name, reps })
       .then((response) => console.log(response))
       .catch((error) => console.error("Error adding exercise:", error))
   }
