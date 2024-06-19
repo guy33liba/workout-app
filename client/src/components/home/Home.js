@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import bodyBuilder from "../upper-body/videos/body-builder.mp4"
+import bodyBuilder from "./body_builder.jpg"
+
 import "./Home.css"
 import axios from "axios"
 import { WorkingOutContext } from "../../context/WorkoutContext"
@@ -8,50 +9,32 @@ import { WorkingOutContext } from "../../context/WorkoutContext"
 const Home = () => {
   const { workoutList, updateWorkoutList } = useContext(WorkingOutContext)
   const { abs, cardio, legs, upperBody } = workoutList
+  const [localUpdateToggle, setLocalUpdateToggle] = useState(false)
+  const [localDeleteToggle, setLocalDeleteToggle] = useState(false)
   useEffect(() => {
-    const getWorkouts = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:4000/workoutdata")
-        updateWorkoutList("upperBody", data)
-        updateWorkoutList("abs", data)
-        updateWorkoutList("legs", data)
-        updateWorkoutList("cardio", data)
-        console.log(data)
-      } catch (error) {
-        console.error("Error fetching workouts:", error)
-      }
-    }
-
-    getWorkouts()
+    setLocalUpdateToggle(true)
   }, [])
-
   return (
     <div className="background-video">
-      <video muted loop id="bgVideo">
-        <source src={bodyBuilder} type="video/mp4" />
-      </video>
-      <div className="links">
-        <div>
-          <Link to="/" className="color">
-            Home
-          </Link>
-        </div>
+      <h1>your own workout</h1>
+      <img className="bgImage" src={bodyBuilder} alt="" />
+      <div className="links animateUp">
         <div>
           <Link to="/upperBody" className="color">
             UpperBody
           </Link>
         </div>
-        <div>
+        <div className="color">
           <Link to="/Legs" className="color">
             Legs
           </Link>
         </div>
-        <div>
+        <div className="color">
           <Link to="/Cardio" className="color">
             Cardio
           </Link>
         </div>
-        <div>
+        <div className="color">
           <Link to="/Abs" className="color">
             Abs
           </Link>
@@ -59,35 +42,57 @@ const Home = () => {
       </div>
       <div className="externalContainer">
         <div className="workoutListItemsContainer">
-          <div className="itemBox">
+          <div className={`itemBox ${localUpdateToggle ? "animate" : ""}`}>
             <h2>Upper Body</h2>
-            {upperBody.map((item, index) => (
+            {upperBody?.map((item, index) => (
               <div key={index} className="workoutItem">
-                {item.upperBody}
+                <button
+                  className={localDeleteToggle ? "newItem red" : "newItem"}
+                  onClick={() => setLocalDeleteToggle(!localDeleteToggle)}
+                >
+                  {item}
+                </button>
               </div>
             ))}
           </div>
-          <div className="itemBox">
+          <div className={`itemBox ${localUpdateToggle ? "animate" : ""}`}>
             <h2>Cardio</h2>
-            {cardio.map((item, index) => (
-              <div key={index} className="workoutItem">
-                {item.cardio}
+            {cardio?.map((item, index) => (
+              <div key={index} className="workoutItem" onClick={() => setLocalDeleteToggle(!localDeleteToggle)}>
+                <button
+                  className={localDeleteToggle ? "newItem red" : "newItem"}
+                  onClick={() => setLocalDeleteToggle(!localDeleteToggle)}
+                >
+                  {item}
+                </button>
               </div>
             ))}
           </div>
-          <div className="itemBox">
+          <div className={`itemBox ${localUpdateToggle ? "animate" : ""}`}>
             <h2>Abs</h2>
-            {abs.map((item, index) => (
+            {abs?.map((item, index) => (
               <div key={index} className="workoutItem">
-                {item.abs}
+                <button
+                  className={localDeleteToggle ? "newItem red" : "newItem"}
+                  onClick={() => setLocalDeleteToggle(!localDeleteToggle)}
+                >
+                  {item}
+                </button>
               </div>
             ))}
           </div>
-          <div className="itemBox">
+          <div className={`itemBox ${localUpdateToggle ? "animate" : ""}`}>
             <h2>Legs</h2>
-            {legs.map((item, index) => (
+            {legs?.map((item, index) => (
               <div key={index} className="workoutItem">
-                {item.legs}
+                <div>
+                  <button
+                    className={localDeleteToggle ? "newItem red" : "newItem"}
+                    onClick={() => setLocalDeleteToggle(!localDeleteToggle)}
+                  >
+                    {item}
+                  </button>
+                </div>
               </div>
             ))}
           </div>

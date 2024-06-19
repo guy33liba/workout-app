@@ -7,20 +7,24 @@
   position: absolute;
   left: 57%;
   text-decoration: none;
+  flex-direction: column;
+  position: absolute;
+  left: 80%;
+  margin-top: 120px;
 }
-
 .color {
+  margin-top: 80px;
   transition: ease-in-out 0.5s;
   color: rgb(255, 255, 255);
 }
 .color:hover {
-  color: rgb(255, 255, 255, 0.5);
+  color: rgba(202, 202, 255, 0.5);
   transition: 0.5s;
 }
 .headline {
   color: rgba(99, 123, 255, 0.8);
   font-size: 100px;
-  transition: 0.5s;
+  transition: ease-in 0.5s;
 }
 .headline:hover {
   color: white;
@@ -35,22 +39,84 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 .externalContainer {
   top: 10%;
   position: absolute;
   height: 50vh;
   display: flex;
-  width: 60%;
+  width: 70%;
   border: 5px solid rgb(73, 70, 70);
 }
 .workoutItem {
   font-size: 30px;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+}
+.newItem {
+  background-color: aliceblue;
+  font-size: 30px;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  transition: 0.3s;
+  border-radius: 8px;
+}
+h1 {
+  text-align: center;
+  color: aliceblue;
+  border: 5px solid rgb(255, 255, 255);
+  padding: 10px;
+  width: 400px;
+  position: absolute;
+  left: 40%;
+  margin: 0;
+  font-size: 40px;
+}
+.newItem:hover {
+  transition: 0.3s;
+  font-size: 35px;
 }
 .itemBox {
   align-content: start;
-  width: 286px;
+  width: 334px;
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid white;
+}
+.red {
+  background-color: red;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.workoutItem {
+  animation: slideIn 0.5s ease forwards;
+  opacity: 0; /* Initially hide the element */
+}
+
+.animate {
+  animation: slideIn 0.5s ease forwards;
+  opacity: 1;
+}
+.animateUp {
+  animation: slideUp 1s ease-in-out;
 }

@@ -7,7 +7,8 @@ import dumbellWalking from "./videos/dumbellWalking.mp4"
 import singleInverseLeg from "./videos/singleInverseLeg.mp4"
 import InverseLegCurlBenchPads from "./videos/InverseLegCurlBenchPads.mp4"
 import splitSquat from "./videos/splitSquat.mp4"
-import bodyBuilder from "./videos/body-builder.mp4"
+import bodyBuilder from "./videos/body_builder.jpg"
+
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { FaArrowAltCircleLeft } from "react-icons/fa"
@@ -17,16 +18,16 @@ const Legs = () => {
   const { workoutList, updateWorkoutList } = useContext(WorkingOutContext)
 
   const [commentsInput, setCommentsInput] = useState("")
-  const { legs } = workoutList
   const [localStateLegs, setLocalStateLegs] = useState("")
 
   const postWorkouts = async () => {
-    const { data } = await axios.post("http://localhost:4000/workoutdata", {
+    const { data } = await axios.post("http://localhost:4000/workoutdata/legs", {
       legs: localStateLegs,
       commentsInput,
     })
     updateWorkoutList(data.legs, localStateLegs)
   }
+
   return (
     <div>
       <Link to="/">
@@ -39,63 +40,57 @@ const Legs = () => {
             <option value="" disabled>
               choose Workout...
             </option>
-            <option value="barbellSquat">barbell Squat</option>
-            <option value="barOneLeggedDeadlift">bar One Legged Deadlift</option>
-            <option value="cableDonkeyKickback">cable Donkey Kickback</option>
-            <option value="dumbellGoblet">dumbell Goblet</option>
-            <option value="dumbellWalking">dumbell Walking</option>
-            <option value="InverseLegCurlBenchPads">Inverse Leg Curl BenchPads</option>
-            <option value="splitSquat">split Squat</option>
+            <option value="barbell Squat">barbell_Squat</option>
+            <option value="bar One Legged lift">bar One_Legged Deadlift</option>
+            <option value="cable Donkey ">cable Donkey_Kickback</option>
+            <option value="dumbell Goblet">dumbell_Goblet</option>
+            <option value="dumbell Walking">dumbell_Walking</option>
+            <option value="Inverse Leg Curl">Inverse_Leg Curl BenchPads</option>
+            <option value="split Squat">split_Squat</option>
           </select>
         </div>
         <div className="videos">
-          {legs === "barbellSquat" && (
+          {localStateLegs === "barbell Squat" && (
             <video className="videos" autoPlay muted width="700" height="700" controls>
               <source src={barbellSquat} type="video/mp4" />
             </video>
           )}
-          {legs === "barOneLeggedDeadlift" && (
+          {localStateLegs === "bar One Legged lift" && (
             <video className="videos" autoPlay muted width="700" height="700" controls>
               <source src={barOneLeggedDeadlift} type="video/mp4" />
             </video>
           )}
-          {legs === "cableDonkeyKickback" && (
+          {localStateLegs === "cable Donkey " && (
             <video className="videos" autoPlay muted width="700" height="700" controls>
               <source src={cableDonkeyKickback} type="video/mp4" />
             </video>
           )}
-          {legs === "dumbellGoblet" && (
+          {localStateLegs === "dumbell Goblet" && (
             <video className="videos" autoPlay muted width="700" height="700" controls>
               <source src={dumbellGoblet} type="video/mp4" />
             </video>
           )}
-          {legs === "dumbellWalking" && (
+          {localStateLegs === "dumbell Walking" && (
             <video className="videos" autoPlay muted width="700" height="700" controls>
               <source src={dumbellWalking} type="video/mp4" />
             </video>
           )}
-          {legs === "InverseLegCurlBenchPads" && (
+          {localStateLegs === "Inverse Leg Curl" && (
             <video className="videos" autoPlay muted width="700" height="700" controls>
               <source src={InverseLegCurlBenchPads} type="video/mp4" />
             </video>
           )}
-          {legs === "splitSquat" && (
+          {localStateLegs === "split Squat" && (
             <video className="videos" autoPlay muted width="700" height="700" controls>
               <source src={splitSquat} type="video/mp4" />
-            </video>
-          )}
-          {legs === "singleInverseLeg" && (
-            <video className="videos" autoPlay muted width="700" height="700" controls>
-              <source src={singleInverseLeg} type="video/mp4" />
             </video>
           )}
         </div>
       </div>
       <div>
-        <div class="background-video">
-          <video muted loop id="bgVideo">
-            <source src={bodyBuilder} type="video/mp4" />
-          </video>
+        <div className="background-video">
+          <img className="bgImage" src={bodyBuilder} alt="" />
+
           <div className="comments">
             <div className="header">tell me how to workout better </div>
             <div>
@@ -115,17 +110,19 @@ const Legs = () => {
               >
                 Upload Comments
               </button>
-              <button
-                onClick={() => {
-                  setCommentsInput((list) => {
-                    return { ...list, commentsInput }
-                  })
-                  postWorkouts()
-                }}
-                style={{ fontSize: "30px" }}
-              >
-                Upload Workout List
-              </button>
+              <Link to="/">
+                <button
+                  onClick={() => {
+                    setCommentsInput((list) => {
+                      return { ...list, commentsInput }
+                    })
+                    postWorkouts()
+                  }}
+                  style={{ fontSize: "30px" }}
+                >
+                  Upload Workout List
+                </button>
+              </Link>
             </div>
           </div>
         </div>
