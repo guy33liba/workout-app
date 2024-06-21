@@ -3,10 +3,12 @@ body {
   background-color: #f4f4f9;
   margin: 0;
   padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 .container {
-  width: 50%;
+  width: 55%;
   margin: 0 auto;
   padding: 20px;
 }
@@ -45,19 +47,41 @@ form button:hover {
 }
 
 ul {
+  display: flex;
+  flex-wrap: wrap;
   list-style-type: none;
   padding: 0;
+  width: 100%;
+  margin-left: 5px;
+  height: 400px;
 }
-
 li {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   background-color: #fff;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  margin: 5px;
+  border-radius: 20px;
+  border: 1px solid black;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
+
+.listItems {
+  width: 100%;
+  margin: auto;
+  gap: 20px; /* Adjust the gap between items as needed */
+  margin-top: 10px;
+}
+
+.listItems li {
+  width: 265px; /* Adjust this width to control the number of items per row */
+  font-size: 20px;
+}
+
+.listItems span {
+  font-size: 25px;
 }
 
 li button {

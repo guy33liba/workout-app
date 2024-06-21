@@ -12,8 +12,18 @@ const WorkoutItem = ({ workout, onDelete }) => {
   }
 
   return (
-    <li>
-      {workout.name} - {workout.type} - {workout.duration} minutes
+    <li className="listItems">
+      <li>
+        <span>Name:</span> {workout.name}
+      </li>
+      <li>
+        <span>Type:</span>
+        {workout.type}
+      </li>
+      <li>
+        <span>Duration:</span>
+        {workout.duration}: minutes
+      </li>
       <button onClick={handleDelete}>Delete</button>
     </li>
   )
